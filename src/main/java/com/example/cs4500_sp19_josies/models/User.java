@@ -1,13 +1,15 @@
 package com.example.cs4500_sp19_josies.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -16,11 +18,30 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private String role;
+    @OneToMany(mappedBy="provider")
+    private List<ServiceAnswer> serviceAnswers;
+    @OneToMany(mappedBy="user")
+    private List<FrequentlyAskedAnswer> frequentlyAskedAnswers;
+    @ManyToMany(mappedBy="providers")
+    private List<Service> services;
+    public List<Service> getServices() {
+        return services;
+    }
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+    public List<FrequentlyAskedAnswer> getFrequentlyAskedAnswers() {
+        return frequentlyAskedAnswers;
+    }
+    public void setFrequentlyAskedAnswers(List<FrequentlyAskedAnswer> frequentlyAskedAnswers) {
+        this.frequentlyAskedAnswers = frequentlyAskedAnswers;
+    }
     public User() {}
-    public User(Integer i, String username, String firstName, String lastName) {
-        this.id = i;
+    public User(Integer id, String username, String password, String firstName, String lastName) {
+        super();
+        this.id = id;
         this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -53,11 +74,5 @@ public class User {
     }
     public void setId(Integer id) {
         this.id = id;
-    }
-    public String getRole() {
-        return role;
-    }
-    public void setRole(String role) {
-        this.role = role;
     }
 }
