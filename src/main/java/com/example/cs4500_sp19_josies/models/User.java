@@ -19,6 +19,7 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+    private String role;
 
     @OneToMany(mappedBy="provider")
     private List<ServiceAnswer> serviceAnswers;
@@ -46,13 +47,14 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String password, String firstName, String lastName) {
+    public User(Integer id, String username, String password, String firstName, String lastName, String role) {
         super();
         this.id = id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -101,5 +103,13 @@ public class User {
 
     public void setServiceAnswers(List<ServiceAnswer> serviceAnswers) {
         this.serviceAnswers = serviceAnswers;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
