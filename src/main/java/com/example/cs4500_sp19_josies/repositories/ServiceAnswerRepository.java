@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ServiceAnswerRepository extends CrudRepository {
+public interface ServiceAnswerRepository extends CrudRepository<ServiceAnswer, Integer> {
     @Query("SELECT serviceAnswer FROM ServiceAnswer serviceAnswer")
     List<ServiceAnswer> findAllServiceAnswers();
     @Query("SELECT serviceAnswer FROM ServiceAnswer serviceAnswer WHERE serviceAnswer.id=:id")
