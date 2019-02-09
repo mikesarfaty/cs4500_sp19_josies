@@ -20,6 +20,8 @@ public class User {
     private String firstName;
     private String lastName;
 
+    @OneToMany(mappedBy="provider")
+    private List<ServiceAnswer> serviceAnswers;
     @OneToMany(mappedBy = "user")
     private List<FrequentlyAskedAnswer> frequentlyAskedAnswers;
     @ManyToMany(mappedBy = "providers")
@@ -91,5 +93,13 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<ServiceAnswer> getServiceAnswers() {
+        return serviceAnswers;
+    }
+
+    public void setServiceAnswers(List<ServiceAnswer> serviceAnswers) {
+        this.serviceAnswers = serviceAnswers;
     }
 }
