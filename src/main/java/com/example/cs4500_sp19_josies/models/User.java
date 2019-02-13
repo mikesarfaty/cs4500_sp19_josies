@@ -1,4 +1,8 @@
-package com.example.cs4500_sp19_josies.models;
+package com.example.cs4500sp19s2jga.models;
+
+import com.example.cs4500_sp19_josies.models.FrequentlyAskedAnswer;
+import com.example.cs4500_sp19_josies.models.Service;
+import com.example.cs4500_sp19_josies.models.ServiceAnswer;
 
 import java.util.List;
 
@@ -11,9 +15,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String password;
@@ -39,46 +42,41 @@ public class User {
     }
     public User() {}
     public User(Integer id, String username, String password, String firstName, String lastName) {
-
-    private String role;
-
-    @OneToMany(mappedBy="provider")
-    private List<ServiceAnswer> serviceAnswers;
-    @OneToMany(mappedBy = "user")
-    private List<FrequentlyAskedAnswer> frequentlyAskedAnswers;
-    @ManyToMany(mappedBy = "providers")
-    private List<Service> services;
+        super();
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-
-    public List<Service> getServices() {
-        return services;
+    public String getUsername() {
+        return username;
     }
-
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
-    public List<FrequentlyAskedAnswer> getFrequentlyAskedAnswers() {
-        return frequentlyAskedAnswers;
+    public String getPassword() {
+        return password;
     }
-
-    public void setFrequentlyAskedAnswers(List<FrequentlyAskedAnswer> frequentlyAskedAnswers) {
-        this.frequentlyAskedAnswers = frequentlyAskedAnswers;
+    public void setPassword(String password) {
+        this.password = password;
     }
-      
-    public List<ServiceAnswer> getServiceAnswers() {
-        return serviceAnswers;
+    public String getFirstName() {
+        return firstName;
     }
-
-    public void setServiceAnswers(List<ServiceAnswer> serviceAnswers) {
-        this.serviceAnswers = serviceAnswers;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-
-    public String getRole() {
-        return role;
+    public String getLastName() {
+        return lastName;
     }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
