@@ -1,4 +1,4 @@
-package com.example.cs4500sp19s2jga.models;
+package com.example.cs4500_sp19_josies.models;
 
 import com.example.cs4500_sp19_josies.models.FrequentlyAskedAnswer;
 import com.example.cs4500_sp19_josies.models.Service;
