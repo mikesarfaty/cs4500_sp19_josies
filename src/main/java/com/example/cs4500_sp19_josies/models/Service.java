@@ -2,8 +2,6 @@ package com.example.cs4500_sp19_josies.models;
 
 import java.util.List;
 
-import com.example.cs4500_sp19_josies.models.User;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
