@@ -21,5 +21,22 @@ public class FAQAnswerService {
             @PathVariable("id") Integer id) {
         return repository.findFrequentlyAskedAnswerById(id);
     }
+    @PostMapping("/api/faqs")
+    public FrequentlyAskedAnswer createFrequentlyAskedAnswer(@RequestBody FrequentlyAskedAnswer frequentlyAskedQuestion) {
+        return repository.save(frequentlyAskedQuestion);
+    }
+    @PutMapping("/api/faqs/{faqAnswerId}/title")
+    public FrequentlyAskedAnswer updateFrequentlyAskedAnswer(
+            @PathVariable("faqAnswerId") Integer id,
+            @RequestBody FrequentlyAskedAnswer faqAnswerUpdates) {
+        FrequentlyAskedAnswer faq = repository.findFrequentlyAskedAnswerById(id);
+        faq.setAnswer(faqAnswerUpdates.getAnswer());
+        return repository.save(faq);
+    }
+    @DeleteMapping("/api/faqs/{faqAnswerId}")
+    public void deleteFrequentlyAskedAnswer(
+            @PathVariable("faqAnswerId") Integer id) {
+        repository.deleteById(id);
+    }
 
 }
