@@ -16,10 +16,17 @@ public class Estimate {
   public Estimate(float basePrice, Frequency baseFrequency, boolean subscription,
                   Frequency subscriptionFrequency, Frequency deliveryFrequency, SubscriptionDiscount subscriptionDiscounts) {
     //this.estimate = 0;
+    if (basePrice < 0) {
+      throw new IllegalArgumentException("base price must be positive");
+    }
     this.basePrice = basePrice;
     this.baseFrequency = baseFrequency;
     this.subscription = subscription;
     this.subscriptionFrequency = subscriptionFrequency;
+    if (!(deliveryFrequency==Frequency.HOLIDAY) && !(deliveryFrequency==Frequency.EMERGENCY)
+            && !(deliveryFrequency==Frequency.WEEKDAY) && !(deliveryFrequency==Frequency.WEEKEND)) {
+      throw new IllegalArgumentException("delivery frequency invalid");
+    }
     this.deliveryFrequency = deliveryFrequency;
     this.deliveryFees = new ArrayList<DeliveryFee>();
     this.subscriptionDiscounts = new ArrayList<SubscriptionDiscount>();
