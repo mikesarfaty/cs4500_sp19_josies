@@ -1,5 +1,6 @@
 package com.example.cs4500_sp19_josies.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Estimate {
@@ -19,6 +20,7 @@ public class Estimate {
     this.subscription = subscription;
     this.subscriptionFrequency = subscriptionFrequency;
     this.deliveryFrequency = deliveryFrequency;
+    this.deliveryFees = new ArrayList<DeliveryFee>();
   }
 
   public void setDeliveryFees(List<DeliveryFee> fees) {
@@ -31,6 +33,14 @@ public class Estimate {
   }
 
   public float getFees() {
-    return 0;
+    if (this.deliveryFees.size() == 0) { return 0; }
+    else {
+      for (DeliveryFee fee : deliveryFees) {
+        if (fee.getFrequency() == this.deliveryFrequency) {
+          return fee.getFee();
+        }
+      }
+      return 0;
+    }
   }
 }
