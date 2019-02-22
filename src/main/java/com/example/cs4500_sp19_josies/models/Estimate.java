@@ -54,6 +54,7 @@ public class Estimate {
             return fee.getFee();
           }
           else {
+
             float answer = this.basePrice * fee.getFee();
             return ((int) ((answer + 0.005f) * 100)) / 100f;
           }
