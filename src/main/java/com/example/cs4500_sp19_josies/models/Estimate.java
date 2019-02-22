@@ -37,7 +37,12 @@ public class Estimate {
     else {
       for (DeliveryFee fee : deliveryFees) {
         if (fee.getFrequency() == this.deliveryFrequency) {
-          return fee.getFee();
+          if (fee.isFlat()) {
+            return fee.getFee();
+          }
+          else {
+            return this.basePrice * fee.getFee();
+          }
         }
       }
       return 0;
