@@ -1,5 +1,11 @@
 package com.example.cs4500_sp19_josies.models;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="delivery_fee")
 public class DeliveryFee {
   private float fee;
   private Frequency frequency;

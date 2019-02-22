@@ -3,6 +3,8 @@ package com.example.cs4500_sp19_josies.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.StrictMath.round;
+
 public class Estimate {
   private float estimate;
   private float basePrice;
@@ -34,6 +36,10 @@ public class Estimate {
     this.deliveryFees = fees;
   }
 
+  public void setDeliveryFrequency(Frequency deliveryFrequency) {
+    this.deliveryFrequency = deliveryFrequency;
+  }
+
   public float getEstimate() {
     this.estimate = this.basePrice + this.getFees();
     return this.estimate;
@@ -48,7 +54,9 @@ public class Estimate {
             return fee.getFee();
           }
           else {
-            return this.basePrice * fee.getFee();
+
+            float answer = this.basePrice * fee.getFee();
+            return ((int) ((answer + 0.005f) * 100)) / 100f;
           }
         }
       }
