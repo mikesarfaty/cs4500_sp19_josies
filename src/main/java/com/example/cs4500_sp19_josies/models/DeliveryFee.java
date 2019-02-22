@@ -30,9 +30,15 @@ public class DeliveryFee {
   }
 
   public DeliveryFee(float fee, Frequency frequency, boolean flat) {
-    this.fee = fee;
     this.frequency = frequency;
     this.flat = flat;
+    if (fee < 0) {
+      throw new IllegalArgumentException("fee must be greater than 0");
+    }
+    if (!flat && fee > 1) {
+      throw new IllegalArgumentException("pct fees must < 1");
+    }
+    this.fee = fee;
   }
 
 
