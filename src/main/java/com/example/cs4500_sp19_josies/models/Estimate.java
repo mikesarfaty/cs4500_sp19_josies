@@ -16,7 +16,7 @@ public class Estimate {
   private List<SubscriptionDiscount> subscriptionDiscounts;
 
   public Estimate(float basePrice, Frequency baseFrequency, boolean subscription,
-                  Frequency subscriptionFrequency, Frequency deliveryFrequency, SubscriptionDiscount subscriptionDiscounts) {
+                  Frequency subscriptionFrequency, Frequency deliveryFrequency) {
     //this.estimate = 0;
     if (basePrice < 0) {
       throw new IllegalArgumentException("base price must be positive");
@@ -67,13 +67,26 @@ public class Estimate {
     }
   }
 
+  public void setSubscriptionDiscounts(List<SubscriptionDiscount> discounts) {
+    this.subscriptionDiscounts = discounts;
+  }
+
+  public void setSubscriptionFrequency(Frequency subscriptionFrequency) {
+    this.subscriptionFrequency = subscriptionFrequency;
+  }
+
   public float getDiscount() {
-    for (SubscriptionDiscount discount : subscriptionDiscounts) {
-      if (this.subscriptionFrequency == discount.getFrequency()) {
+    if (this.subscriptionDiscounts.size() == 0) { return 0; }
+
+    for (SubscriptionDiscount discount : this.subscriptionDiscounts) {
+      if (discount.getFrequency() == this.subscriptionFrequency) {
         if (discount.isFlat()) {
           return discount.getDiscount();
         }
-        return this.basePrice * (discount.getDiscount() / 100);
+        else {
+          float answer = this.basePrice * discount.getDiscount();
+          return ((int) ((answer + 0.005f) * 100)) / 100f;
+        }
       }
     }
     return 0;

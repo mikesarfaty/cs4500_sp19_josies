@@ -14,6 +14,13 @@ public class SubscriptionDiscount {
         this.discount = discount;
         this.frequency = frequency;
         this.flat = flat;
+
+        if (discount < 0) {
+            throw new IllegalArgumentException("discount can't be negative");
+        }
+        else if (!flat && discount > 1) {
+            throw new IllegalArgumentException("discount can't be 100%");
+        }
     }
 
 
