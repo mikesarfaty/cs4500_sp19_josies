@@ -3,6 +3,8 @@ package com.example.cs4500_sp19_josies.tests;
 import com.example.cs4500_sp19_josies.models.DeliveryFee;
 import com.example.cs4500_sp19_josies.models.Estimate;
 import com.example.cs4500_sp19_josies.models.Frequency;
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,18 +13,23 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class DeliveryFeeEstimateTest {
 
     Estimate initEst;
+    List<DeliveryFee> deliveryFees2;
 
     @BeforeEach
     void setUp() {
 
         List<DeliveryFee> deliveryFees = new ArrayList<DeliveryFee>();
+        deliveryFees2 = new ArrayList<DeliveryFee>();
         DeliveryFee weekday = new DeliveryFee(0, Frequency.WEEKDAY, false);
         DeliveryFee weekend = new DeliveryFee(0.1f, Frequency.WEEKEND, false);
         DeliveryFee holiday = new DeliveryFee(0.2f, Frequency.HOLIDAY, false);
         DeliveryFee emergency = new DeliveryFee(0.3f, Frequency.EMERGENCY, false);
+        DeliveryFee emergency2 = new DeliveryFee(200, Frequency.EMERGENCY, true);
+        deliveryFees2.add(emergency2);
         deliveryFees.add(weekday);
         deliveryFees.add(weekend);
         deliveryFees.add(holiday);
@@ -77,7 +84,14 @@ public class DeliveryFeeEstimateTest {
     }
 
     // Test flat fee
-
+    @Test
+    void testFlatFee() {
+        this.initEst.setDeliveryFrequency(Frequency.EMERGENCY);
+        initEst.setDeliveryFees(deliveryFees2);
+        float actual = initEst.getFees();
+        float expected = 200.00f;
+        assertEquals(expected, actual);
+    }
 
     // Test total fee no discount.
 
