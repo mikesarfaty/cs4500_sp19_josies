@@ -56,7 +56,7 @@ public class SubscriptionEstimateDiscountTest {
     void testNoOneTimeReward() {
     	SubscriptionDiscount weekly10flat = new SubscriptionDiscount(10, Frequency.WEEKLY, true);
     	SubscriptionDiscount biweekly50percent = new SubscriptionDiscount(.5f, Frequency.BIWEEKLY, false);
-        subscriptionDiscounts.addAll(List.of(weekly10flat, biweekly50percent));
+        this.subscriptionDiscounts = List.of(weekly10flat, biweekly50percent);
         this.estimate.setSubscriptionDiscounts(subscriptionDiscounts);
         this.estimate.setSubscriptionFrequency(Frequency.ONETIME);
         
