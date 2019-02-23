@@ -5,6 +5,7 @@ import com.example.cs4500_sp19_josies.models.Estimate;
 import com.example.cs4500_sp19_josies.models.Frequency;
 
 
+import com.example.cs4500_sp19_josies.models.SubscriptionDiscount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,10 +41,10 @@ public class DeliveryFeeEstimateTest {
         Frequency initFrequency= Frequency.HOLIDAY;
         boolean initSubscription = false;
         Frequency initSubscriptionFrequency = Frequency.ONETIME;
-        Frequency initDeliveryFrequncy = Frequency.WEEKDAY;
+        Frequency initDeliveryFrequency = Frequency.WEEKDAY;
 
         initEst = new Estimate(basePrice, initFrequency, initSubscription, initSubscriptionFrequency,
-                initDeliveryFrequncy);
+                initDeliveryFrequency);
         initEst.setDeliveryFees(deliveryFees);
     }
 

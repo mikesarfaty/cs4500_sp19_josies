@@ -13,6 +13,7 @@ public class Estimate {
   private Frequency subscriptionFrequency;
   private Frequency deliveryFrequency;
   private List<DeliveryFee> deliveryFees;
+  private List<SubscriptionDiscount> subscriptionDiscounts;
 
   public Estimate(float basePrice, Frequency baseFrequency, boolean subscription,
                   Frequency subscriptionFrequency, Frequency deliveryFrequency) {
@@ -30,6 +31,7 @@ public class Estimate {
     }
     this.deliveryFrequency = deliveryFrequency;
     this.deliveryFees = new ArrayList<DeliveryFee>();
+    this.subscriptionDiscounts = new ArrayList<SubscriptionDiscount>();
   }
 
   public void setDeliveryFees(List<DeliveryFee> fees) {
@@ -41,7 +43,8 @@ public class Estimate {
   }
 
   public float getEstimate() {
-    this.estimate = this.basePrice + this.getFees();
+    this.estimate = this.basePrice - this.getDiscount();
+    this.estimate += this.getFees();
     return this.estimate;
   }
 
@@ -62,5 +65,30 @@ public class Estimate {
       }
       return 0;
     }
+  }
+
+  public void setSubscriptionDiscounts(List<SubscriptionDiscount> discounts) {
+    this.subscriptionDiscounts = discounts;
+  }
+
+  public void setSubscriptionFrequency(Frequency subscriptionFrequency) {
+    this.subscriptionFrequency = subscriptionFrequency;
+  }
+
+  public float getDiscount() {
+    if (this.subscriptionDiscounts.size() == 0) { return 0; }
+
+    for (SubscriptionDiscount discount : this.subscriptionDiscounts) {
+      if (discount.getFrequency() == this.subscriptionFrequency) {
+        if (discount.isFlat()) {
+          return discount.getDiscount();
+        }
+        else {
+          float answer = this.basePrice * discount.getDiscount();
+          return ((int) ((answer + 0.005f) * 100)) / 100f;
+        }
+      }
+    }
+    return 0;
   }
 }
