@@ -69,7 +69,7 @@ public class SubscriptionEstimateDiscountTest {
     @Test
     void testBiweeklyReward() {
     	SubscriptionDiscount biweekly5percent = new SubscriptionDiscount(.05f, Frequency.BIWEEKLY, false);
-    	this.subscriptionDiscounts.add(biweekly5percent);
+    	this.subscriptionDiscounts = List.of(biweekly5percent);
     	this.estimate.setSubscriptionDiscounts(this.subscriptionDiscounts);
     	this.estimate.setSubscriptionFrequency(Frequency.BIWEEKLY);
     	
