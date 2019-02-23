@@ -7,9 +7,6 @@ import java.util.*;
 public class ServiceSearch {
 
     List<User> searchForProviders(Service service, SearchCriteria criteria) {
-        // The list of users to eventually return.
-        List<User> users = new ArrayList<>();
-
         // A mapping of users to their score.
         Map<User, Integer> providerScores = new HashMap<>();
 
@@ -84,14 +81,19 @@ public class ServiceSearch {
             }
         }
 
-        // Add all users with a score of at least 1 to the return list.
-        // TODO: Not sure how to add them in sorted score order without a lot more code.
-        for (User p : providerScores.keySet()) {
-            if (providerScores.get(p) > 0) {
-                users.add(p);
+        // Add all providers to a return list.
+        List<User> providersByScore = new ArrayList<>(providerScores.keySet());
+
+        // Remove any providers that don't have at least one matched search predicate.
+        for (User p : providersByScore) {
+            if (providerScores.get(p) == 0) {
+                providersByScore.remove(p);
             }
         }
 
-        return users;
+        // Sort the leftovers based on their rank in the score map.
+        Collections.sort(providersByScore, new ServiceSearchSortByScore(providerScores));
+
+        return providersByScore;
     }
 }
