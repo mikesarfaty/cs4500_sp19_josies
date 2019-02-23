@@ -94,8 +94,17 @@ public class DeliveryFeeEstimateTest {
     }
 
     // Test total fee no discount.
-
-
+    @Test
+    void testTotalFee() {
+        this.initEst.setDeliveryFrequency(Frequency.EMERGENCY);
+        float actual = initEst.getEstimate();
+        float expected = 130.00f;
+        assertEquals(expected, actual);
+        initEst.setDeliveryFees(deliveryFees2);
+        float actual2 = initEst.getEstimate();
+        float expected2 = 300.00f;
+        assertEquals(expected2, actual2);
+    }
 
 
 
