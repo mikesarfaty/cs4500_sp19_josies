@@ -80,7 +80,6 @@ public class ServiceSearch {
                 }
             }
         }
-
         // Add all providers to a return list.
         List<User> providersByScore = new ArrayList<>(providerScores.keySet());
 
