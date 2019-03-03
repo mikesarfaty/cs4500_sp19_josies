@@ -22,12 +22,9 @@ public class ServiceQuestion {
     private List<ServiceAnswer> serviceAnswers;
 
 
-    public ServiceQuestion(String question, QuestionType type,
-                           String choices, List<ServiceAnswer> serviceAnswers) {
+    public ServiceQuestion(String question, QuestionType type) {
         this.question = question;
         this.type = type;
-        this.choices = choices;
-        this.serviceAnswers = serviceAnswers;
     }
 
 

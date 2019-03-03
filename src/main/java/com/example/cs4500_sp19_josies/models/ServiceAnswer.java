@@ -35,6 +35,10 @@ public class ServiceAnswer {
         this.provider = provider;
     }
 
+    public ServiceAnswer() {
+
+    }
+
     public Integer getId() {
         return id;
     }
