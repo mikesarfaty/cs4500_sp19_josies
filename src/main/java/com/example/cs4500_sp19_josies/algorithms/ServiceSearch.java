@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ServiceSearch {
 
-    List<User> searchForProviders(Service service, SearchCriteria criteria) {
+    public List<User> searchForProviders(Service service, SearchCriteria criteria) {
         // A mapping of users to their score.
         Map<User, Integer> providerScores = new HashMap<>();
 
@@ -63,15 +63,18 @@ public class ServiceSearch {
                         }
                         break;
                     case Range:
+
+
                         int searchAnswerMin = searchAnswer.getMinRangeAnswer();
                         int searchAnswerMax = searchAnswer.getMaxRangeAnswer();
-                        if (searchAnswerMin <= providerAnswer.getMinRangeAnswer() &&
-                                searchAnswerMax >= providerAnswer.getMaxRangeAnswer()) {
+
+                        if ((searchAnswerMin <= providerAnswer.getMaxRangeAnswer() &&
+                                searchAnswerMin >= providerAnswer.getMinRangeAnswer())
+                                || (searchAnswerMax <= providerAnswer.getMaxRangeAnswer() &&
+                                searchAnswerMax >= providerAnswer.getMinRangeAnswer())) {
                             providerScores.put(p, providerScores.get(p) + 1);
                         }
-                        else {
-                            providerScores.put(p, providerScores.get(p));
-                        }
+
                         break;
                     default:
                         // This is just a default case -- QuestionType is fully enumerated, so
@@ -83,12 +86,20 @@ public class ServiceSearch {
         // Add all providers to a return list.
         List<User> providersByScore = new ArrayList<>(providerScores.keySet());
 
+        List<User> found = new ArrayList<>();
+
         // Remove any providers that don't have at least one matched search predicate.
         for (User p : providersByScore) {
             if (providerScores.get(p) == 0) {
-                providersByScore.remove(p);
+                found.add(p);
+                //providersByScore.remove(p);
             }
         }
+
+        for (User p : found) {
+            providersByScore.remove(p);
+        }
+
 
         // Sort the leftovers based on their rank in the score map.
         Collections.sort(providersByScore, new ServiceSearchSortByScore(providerScores));
