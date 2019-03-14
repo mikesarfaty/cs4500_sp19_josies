@@ -21,15 +21,18 @@ public class ServiceQuestionService {
     public List<ServiceQuestion> findAllQuestions() {
         return repository.findAllServiceQuestions();
     }
+
     @GetMapping("/api/services/{service-questionId}")
     public ServiceQuestion findQuestionById(
             @PathVariable("service-questionId") Integer id) {
         return repository.findServiceQuestionById(id);
     }
+
     @PostMapping("/api/service-questions")
     public ServiceQuestion createQuestion(@RequestBody ServiceQuestion question) {
         return repository.save(question);
     }
+
     @PutMapping("/api/service-questions/{service-questionId}")
     public ServiceQuestion updateQuestion(
             @PathVariable("service-questionId") Integer id,
