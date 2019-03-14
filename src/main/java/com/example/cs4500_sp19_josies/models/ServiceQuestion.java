@@ -21,6 +21,7 @@ public class ServiceQuestion {
     @OneToMany(mappedBy = "serviceQuestion")
     private List<ServiceAnswer> serviceAnswers;
 
+    public ServiceQuestion(){}
 
     public ServiceQuestion(String question, QuestionType type) {
         this.question = question;
