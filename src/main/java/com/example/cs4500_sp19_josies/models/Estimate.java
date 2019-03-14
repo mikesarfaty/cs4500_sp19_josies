@@ -76,8 +76,6 @@ public class Estimate {
   }
 
   public float getDiscount() {
-    if (this.subscriptionDiscounts.size() == 0) { return 0; }
-
     for (SubscriptionDiscount discount : this.subscriptionDiscounts) {
       if (discount.getFrequency() == this.subscriptionFrequency) {
         if (discount.isFlat()) {
