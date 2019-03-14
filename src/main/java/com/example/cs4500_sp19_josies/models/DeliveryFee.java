@@ -2,14 +2,25 @@ package com.example.cs4500_sp19_josies.models;
 
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="delivery_fee")
 public class DeliveryFee {
+  @Id
+  private Integer id;
   private float fee;
   private Frequency frequency;
   private boolean flat;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public float getFee() {
     return fee;

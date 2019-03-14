@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.cs4500_sp19_josies.models.ServiceCategory;
 import com.example.cs4500_sp19_josies.repositories.ServiceCategoryRepository;
 
-
-
 @RestController
+@CrossOrigin(origins="*")
 public class ServiceCategoryService {
 
     @Autowired

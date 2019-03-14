@@ -1,11 +1,14 @@
 package com.example.cs4500_sp19_josies.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="subscription_discount")
 public class SubscriptionDiscount {
+    @Id
+    private Integer id;
     private float discount;
     private Frequency frequency;
     private boolean flat;
@@ -23,6 +26,13 @@ public class SubscriptionDiscount {
         }
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public float getDiscount() {
         return this.discount;
@@ -43,4 +53,5 @@ public class SubscriptionDiscount {
     public boolean isFlat() {
         return this.flat;
     }
+
 }

@@ -21,11 +21,11 @@ public class FAQAnswerService {
             @PathVariable("id") Integer id) {
         return repository.findFrequentlyAskedAnswerById(id);
     }
-    @PostMapping("/api/faqs")
+    @PostMapping("/api/faq-answers")
     public FrequentlyAskedAnswer createFrequentlyAskedAnswer(@RequestBody FrequentlyAskedAnswer frequentlyAskedQuestion) {
         return repository.save(frequentlyAskedQuestion);
     }
-    @PutMapping("/api/faqs/{faqAnswerId}/title")
+    @PutMapping("/api/faq-answers/{faqAnswerId}/title")
     public FrequentlyAskedAnswer updateFrequentlyAskedAnswer(
             @PathVariable("faqAnswerId") Integer id,
             @RequestBody FrequentlyAskedAnswer faqAnswerUpdates) {
@@ -33,7 +33,7 @@ public class FAQAnswerService {
         faq.setAnswer(faqAnswerUpdates.getAnswer());
         return repository.save(faq);
     }
-    @DeleteMapping("/api/faqs/{faqAnswerId}")
+    @DeleteMapping("/api/faq-answers/{faqAnswerId}")
     public void deleteFrequentlyAskedAnswer(
             @PathVariable("faqAnswerId") Integer id) {
         repository.deleteById(id);
