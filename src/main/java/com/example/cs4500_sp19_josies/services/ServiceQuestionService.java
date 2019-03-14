@@ -22,7 +22,7 @@ public class ServiceQuestionService {
         return repository.findAllServiceQuestions();
     }
 
-    @GetMapping("/api/services/{service-questionId}")
+    @GetMapping("/api/service-questions/{service-questionId}")
     public ServiceQuestion findQuestionById(
             @PathVariable("service-questionId") Integer id) {
         return repository.findServiceQuestionById(id);
