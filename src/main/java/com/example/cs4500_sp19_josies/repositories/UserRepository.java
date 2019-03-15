@@ -9,10 +9,10 @@ import org.springframework.data.repository.query.Param;
 import com.example.cs4500_sp19_josies.models.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
-  @Query(value="SELECT user FROM User user")
+  @Query(value="SELECT user FROM User users")
   public List<User> findAllUsers();
-  @Query(value="SELECT user FROM User user WHERE user.id=:id")
+  @Query(value="SELECT user FROM User users WHERE user.id=:id")
   public User findUserById(@Param("id") Integer id);
-  @Query(value="SELECT user FROM User user WHERE user.username=:username")
+  @Query(value="SELECT user FROM User users WHERE user.username=:username")
   public User findByUsername(@Param("username") String username);
 }
