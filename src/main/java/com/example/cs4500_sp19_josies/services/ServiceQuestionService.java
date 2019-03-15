@@ -39,6 +39,8 @@ public class ServiceQuestionService {
             @RequestBody ServiceQuestion serviceUpdates) {
         ServiceQuestion question = repository.findServiceQuestionById(id);
         question.setQuestion(serviceUpdates.getQuestion());
+        question.setChoices(serviceUpdates.getChoices());
+        question.setType(serviceUpdates.getType());
         return repository.save(question);
     }
     @DeleteMapping("/api/service-questions/{service-questionId}")
