@@ -54,32 +54,36 @@ public class SubscriptionEstimateDiscountTest {
         float expected = 10.0f;
         assertEquals(actual, expected);
     }
-    
+
     // test getting no reward if you get one-time but there are no one-time rewards
     @Test
     void testNoOneTimeReward() {
-    	SubscriptionDiscount weekly10flat = new SubscriptionDiscount(10, Frequency.WEEKLY, true);
-    	SubscriptionDiscount biweekly50percent = new SubscriptionDiscount(.5f, Frequency.BIWEEKLY, false);
-        this.subscriptionDiscounts = List.of(weekly10flat, biweekly50percent);
+        SubscriptionDiscount weekly10flat = new SubscriptionDiscount(10, Frequency.WEEKLY, true);
+        SubscriptionDiscount biweekly50percent = new SubscriptionDiscount(.5f, Frequency.BIWEEKLY, false);
+        this.subscriptionDiscounts = new ArrayList<>();
+        this.subscriptionDiscounts.add(weekly10flat);
+        this.subscriptionDiscounts.add(biweekly50percent);
         this.estimate.setSubscriptionDiscounts(subscriptionDiscounts);
         this.estimate.setSubscriptionFrequency(Frequency.ONETIME);
-        
+
         float actualDiscount = this.estimate.getDiscount();
         float expectedDiscount = 0f;
         assertEquals(actualDiscount, expectedDiscount);
     }
-    
+
     // test biweekly rewards (flat)
     @Test
     void testBiweeklyReward() {
-    	SubscriptionDiscount biweekly5percent = new SubscriptionDiscount(.05f, Frequency.BIWEEKLY, false);
-    	this.subscriptionDiscounts = List.of(biweekly5percent);
-    	this.estimate.setSubscriptionDiscounts(this.subscriptionDiscounts);
-    	this.estimate.setSubscriptionFrequency(Frequency.BIWEEKLY);
-    	
-    	float actualDiscount = this.estimate.getDiscount();
-    	float expectedDiscount = 5.0f;
-    	assertEquals(expectedDiscount, actualDiscount);
+        SubscriptionDiscount biweekly5percent = new SubscriptionDiscount(.05f, Frequency.BIWEEKLY, false);
+        this.subscriptionDiscounts = new ArrayList<>();
+        this.subscriptionDiscounts.add(biweekly5percent);
+        this.estimate.setSubscriptionDiscounts(this.subscriptionDiscounts);
+        this.estimate.setSubscriptionFrequency(Frequency.BIWEEKLY);
+
+        float actualDiscount = this.estimate.getDiscount();
+        float expectedDiscount = 5.0f;
+        assertEquals(expectedDiscount, actualDiscount);
+    }
 
     // Test yearly reward such as birthday
     @Test
