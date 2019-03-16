@@ -31,6 +31,12 @@ public class UserService {
 			@PathVariable("userId") Integer id) {
 		return userRepository.findUserById(id);
 	}
+
+	@GetMapping("/api/users/{username}")
+	public User findUserByUsername(@PathVariable("username") String username) {
+		return userRepository.findByUsername(username);
+	}
+
 	@PostMapping("/api/users")
 	public User createUser(@RequestBody User user) {
 		return userRepository.save(user);
