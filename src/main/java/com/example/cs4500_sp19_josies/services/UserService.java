@@ -25,11 +25,6 @@ public class UserService {
 		return userRepository.findUserById(id);
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public User findUserByUsername(@RequestParam(value="username") String username) {
-		return userRepository.findByUsername(username);
-	}
-
 	@PostMapping("/api/users")
 	public User createUser(@RequestBody User user) {
 		return userRepository.save(user);
