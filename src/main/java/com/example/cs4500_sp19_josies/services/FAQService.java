@@ -36,20 +36,12 @@ public class FAQService {
     return repository.save(frequentlyAskedQuestion);
   }
 
-  @PutMapping("/api/faqs/{faqId}/title")
-  public FrequentlyAskedQuestion updateFrequentlyAskedQuestionTitle(
+  @PutMapping("/api/faqs/{faqId}")
+  public FrequentlyAskedQuestion updateFrequentlyAskedQuestion(
           @PathVariable("faqId") Integer id,
           @RequestBody FrequentlyAskedQuestion faqUpdates) {
     FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
     faq.setTitle(faqUpdates.getTitle());
-    return repository.save(faq);
-  }
-
-  @PutMapping("/api/faqs/{faqId}/question")
-  public FrequentlyAskedQuestion updateFrequentlyAskedQuestionQuestion(
-          @PathVariable("faqId") Integer id,
-          @RequestBody FrequentlyAskedQuestion faqUpdates) {
-    FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
     faq.setQuestion(faqUpdates.getQuestion());
     return repository.save(faq);
   }
