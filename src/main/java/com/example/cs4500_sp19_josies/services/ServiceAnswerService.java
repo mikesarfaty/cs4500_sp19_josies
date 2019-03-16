@@ -36,8 +36,8 @@ public class ServiceAnswerService {
         answer.setChoiceAnswer(answerUpdates.getChoiceAnswer());
         return repository.save(answer);
     }
-    @DeleteMapping("/api/service-answer/{service-answerId}")
-    public void deleteQuestion(
+    @DeleteMapping("/api/service-answers/{service-answerId}")
+    public void deleteAnswer(
             @PathVariable("service-answerId") Integer id) {
         repository.deleteById(id);
     }
