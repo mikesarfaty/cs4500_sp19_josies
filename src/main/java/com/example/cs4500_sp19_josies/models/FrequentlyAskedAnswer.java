@@ -55,5 +55,5 @@ public class FrequentlyAskedAnswer {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-    //
+
 }
