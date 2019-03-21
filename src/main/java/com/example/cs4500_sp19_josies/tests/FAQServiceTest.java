@@ -1,6 +1,7 @@
 package com.example.cs4500_sp19_josies.tests;
 
 
+import com.example.cs4500_sp19_josies.models.FrequentlyAskedAnswer;
 import com.example.cs4500_sp19_josies.models.FrequentlyAskedQuestion;
 import com.example.cs4500_sp19_josies.repositories.FAQRepository;
 import com.example.cs4500_sp19_josies.services.FAQService;
@@ -59,6 +60,8 @@ public class FAQServiceTest {
     mockQuestion.setTitle("Food preference");
     mockQuestion.setId(1);
     mockQuestion.setQuestion("What do you like to eat?");
+    List<FrequentlyAskedAnswer> ans = new ArrayList<>();
+    mockQuestion.setAnswers(ans);
   }
 
   @Test
