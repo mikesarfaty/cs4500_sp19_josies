@@ -53,8 +53,7 @@ public class FAQService {
   public void deleteFrequentlyAskedQuestion(
           @PathVariable("faqId") Integer id,
           @RequestBody FrequentlyAskedQuestion faqUpdates) {
-    FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
-    for (FrequentlyAskedAnswer faa : faq.getAnswers()) {
+    for (FrequentlyAskedAnswer faa : faqUpdates.getAnswers()) {
       answerRepo.deleteById(faa.getId());
     }
     repository.deleteById(id);
