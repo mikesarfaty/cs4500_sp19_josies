@@ -51,10 +51,12 @@ public class FAQService {
 
   @DeleteMapping("/api/faqs/{faqId}")
   public void deleteFrequentlyAskedQuestion(
-          @PathVariable("faqId") Integer id,
-          @RequestBody FrequentlyAskedQuestion faqUpdates) {
-    for (FrequentlyAskedAnswer faa : faqUpdates.getAnswers()) {
-      answerRepo.deleteById(faa.getId());
+          @PathVariable("faqId") Integer id) {
+    FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
+    if (faq.getAnswers() != null) {
+      for (FrequentlyAskedAnswer faa : faq.getAnswers()) {
+        answerRepo.deleteById(faa.getId());
+      }
     }
     repository.deleteById(id);
   }
