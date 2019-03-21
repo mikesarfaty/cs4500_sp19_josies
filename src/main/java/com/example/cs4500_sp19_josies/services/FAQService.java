@@ -1,6 +1,8 @@
 package com.example.cs4500_sp19_josies.services;
 
+import com.example.cs4500_sp19_josies.models.FrequentlyAskedAnswer;
 import com.example.cs4500_sp19_josies.models.FrequentlyAskedQuestion;
+import com.example.cs4500_sp19_josies.repositories.FAQAnswerRepository;
 import com.example.cs4500_sp19_josies.repositories.FAQRepository;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FAQService {
   @Autowired
   FAQRepository repository;
+  FAQAnswerRepository answerRepo;
   @GetMapping("/api/faqs")
   public List<FrequentlyAskedQuestion> findAllFrequentlyAskedQuestions() {
     return repository.findAllFrequentlyAskedQuestions();
@@ -36,27 +39,24 @@ public class FAQService {
     return repository.save(frequentlyAskedQuestion);
   }
 
-  @PutMapping("/api/faqs/{faqId}/title")
-  public FrequentlyAskedQuestion updateFrequentlyAskedQuestionTitle(
+  @PutMapping("/api/faqs/{faqId}")
+  public FrequentlyAskedQuestion updateFrequentlyAskedQuestion(
           @PathVariable("faqId") Integer id,
           @RequestBody FrequentlyAskedQuestion faqUpdates) {
     FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
     faq.setTitle(faqUpdates.getTitle());
-    return repository.save(faq);
-  }
-
-  @PutMapping("/api/faqs/{faqId}/question")
-  public FrequentlyAskedQuestion updateFrequentlyAskedQuestionQuestion(
-          @PathVariable("faqId") Integer id,
-          @RequestBody FrequentlyAskedQuestion faqUpdates) {
-    FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
     faq.setQuestion(faqUpdates.getQuestion());
     return repository.save(faq);
   }
 
   @DeleteMapping("/api/faqs/{faqId}")
   public void deleteFrequentlyAskedQuestion(
-          @PathVariable("faqId") Integer id) {
+          @PathVariable("faqId") Integer id,
+          @RequestBody FrequentlyAskedQuestion faqUpdates) {
+    FrequentlyAskedQuestion faq = repository.findFrequentlyAskedQuestionById(id);
+    for (FrequentlyAskedAnswer faa : faq.getAnswers()) {
+      answerRepo.deleteById(faa.getId());
+    }
     repository.deleteById(id);
   }
 }
