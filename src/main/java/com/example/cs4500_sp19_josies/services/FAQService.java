@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FAQService {
   @Autowired
   FAQRepository repository;
+  @Autowired
   FAQAnswerRepository answerRepo;
   @GetMapping("/api/faqs")
   public List<FrequentlyAskedQuestion> findAllFrequentlyAskedQuestions() {
