@@ -8,7 +8,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="frequently_asked_answers")
@@ -21,8 +24,14 @@ public class FrequentlyAskedAnswer {
     @JsonIgnore
     private FrequentlyAskedQuestion frequentlyAskedQuestion;
     @ManyToOne
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
     @JsonIgnore
     private User user;
+    @Transient
+    private Integer user_id;
+    @Transient
+    private Integer frequently_asked_question_id;
     @Transient
     private String question;
     public String getQuestion() {
@@ -54,6 +63,18 @@ public class FrequentlyAskedAnswer {
     }
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+    public Integer getUser_id() {
+        return this.user.getId();
+    }
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+    public Integer getFrequently_asked_question_id() {
+        return this.frequentlyAskedQuestion.getId();
+    }
+    public void setFrequently_asked_question_id(Integer frequently_asked_question_id) {
+        this.frequently_asked_question_id = frequently_asked_question_id;
     }
 
 }
