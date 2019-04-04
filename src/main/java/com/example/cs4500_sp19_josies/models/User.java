@@ -22,6 +22,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String role;
+    private String zipCode;
 
     @OneToMany(mappedBy="provider")
     private List<ServiceAnswer> serviceAnswers;
@@ -49,14 +50,14 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String password, String firstName, String lastName, String role) {
-        super();
-        this.id = id;
+    public User(String username, String password, String firstName, String lastName,
+        String role, String zipCode) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.zipCode = zipCode;
     }
 
     public String getUsername() {
@@ -99,6 +100,14 @@ public class User {
         this.id = id;
     }
 
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public List<ServiceAnswer> getServiceAnswers() {
         return serviceAnswers;
     }
@@ -113,5 +122,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Integer findNearest(String given) {
+        Integer givenZip = Integer.parseInt(given);
+        Integer currZip = Integer.parseInt(this.zipCode);
+
+        Integer diff = Math.abs(givenZip - currZip);
+
+        return diff;
     }
 }
