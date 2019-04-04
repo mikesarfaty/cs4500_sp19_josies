@@ -6,5 +6,6 @@ CREATE TABLE users (
   first_name varchar(255) DEFAULT NULL,
   last_name varchar(255) DEFAULT NULL,
   role varchar(255) DEFAULT NULL,
+  zipCode varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -13,4 +13,6 @@ public interface ServiceRepository extends CrudRepository<Service, Integer> {
     public List<Service> findAllServices();
     @Query(value="SELECT service FROM Service service WHERE service.id=:id")
     public Service findServiceById(@Param("id") Integer id);
+    @Query(value="SELECT service FROM Service service WHERE service.title=:title")
+    public List<Service> findServicesByTitle(@Param("title") String title);
 }
