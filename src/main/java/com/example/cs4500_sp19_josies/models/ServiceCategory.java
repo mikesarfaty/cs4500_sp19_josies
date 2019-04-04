@@ -43,7 +43,7 @@ public class ServiceCategory {
         this.title = title;
     }
     public List<Service> getServices() {
-        return services;
+        return this.services;
     }
     public void setServices(List<Service> services) {
         this.services = services;
