@@ -1,5 +1,7 @@
 package com.example.cs4500_sp19_josies.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ public class Service {
     private Integer id;
     private String title;
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="PROVIDERS_SERVICES",
             joinColumns=@JoinColumn(name="SERVICE_ID", referencedColumnName="ID"),
@@ -50,4 +53,11 @@ public class Service {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public Service(Integer id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+    public Service() {}
+
 }
