@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="services")
 public class Service {
@@ -28,6 +30,7 @@ public class Service {
             inverseJoinColumns=@JoinColumn(name="USER_ID", referencedColumnName="ID"))
     private List<User> providers;
     @ManyToMany(mappedBy="services")
+    @JsonIgnore
     private List<ServiceCategory> serviceCategories;
     public List<ServiceCategory> getServiceCategories() {
         return serviceCategories;
