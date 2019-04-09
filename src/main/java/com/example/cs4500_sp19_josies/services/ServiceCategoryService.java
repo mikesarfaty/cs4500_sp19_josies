@@ -24,7 +24,7 @@ public class ServiceCategoryService {
     @GetMapping("/api/categories")
     public List<ServiceCategory> findAllServiceCategories(
             @RequestParam(name="limit", required=false) Integer limit) {
-        List<ServiceCategory> categories = serviceRepository.findAllServiceCategories();
+        List<ServiceCategory> categories = serviceCategoryRepository.findAllServiceCategories();
         if(limit != null) {
             return categories.subList(0, limit);
         }
