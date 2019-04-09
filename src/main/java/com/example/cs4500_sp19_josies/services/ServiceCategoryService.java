@@ -1,5 +1,6 @@
 package com.example.cs4500_sp19_josies.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,45 +13,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.example.cs4500_sp19_josies.models.Service;
 import com.example.cs4500_sp19_josies.models.ServiceCategory;
 import com.example.cs4500_sp19_josies.repositories.ServiceCategoryRepository;
+import com.example.cs4500_sp19_josies.repositories.ServiceRepository;
 
 @RestController
 @CrossOrigin(origins="*")
 public class ServiceCategoryService {
 
     @Autowired
-    ServiceCategoryRepository serviceRepository;
+    ServiceCategoryRepository serviceCategoryRepository;
+    
+    @Autowired
+    ServiceRepository serviceRepository;
 
     @GetMapping("/api/categories")
     public List<ServiceCategory> findAllServiceCategories() {
 
-        return serviceRepository.findAllServiceCategories();
+        return serviceCategoryRepository.findAllServiceCategories();
     }
 
     @GetMapping("/api/categories/{serviceCategoryId}")
     public ServiceCategory findServiceCategoryById(
             @PathVariable("serviceCategoryId") Integer id) {
-        return serviceRepository.findServiceCategoryById(id);
+        return serviceCategoryRepository.findServiceCategoryById(id);
     }
 
     @PostMapping("/api/categories")
     public ServiceCategory createServiceCategory(@RequestBody ServiceCategory serviceCategory) {
-        return serviceRepository.save(serviceCategory);
+        return serviceCategoryRepository.save(serviceCategory);
     }
 
     @PutMapping("/api/categories/{serviceCategoryId}")
     public ServiceCategory updateServiceCategory(
             @PathVariable("serviceCategoryId") Integer id,
             @RequestBody ServiceCategory serviceUpdates) {
-        ServiceCategory serviceCategory = serviceRepository.findServiceCategoryById(id);
+        ServiceCategory serviceCategory = serviceCategoryRepository.findServiceCategoryById(id);
         serviceCategory.setTitle(serviceUpdates.getTitle());
-        return serviceRepository.save(serviceCategory);
+        return serviceCategoryRepository.save(serviceCategory);
+    }
+    
+    @PostMapping("/api/categories/{serviceCategoryId}/services/{serviceId}")
+    public ServiceCategory registerServiceToCategory(
+    		@PathVariable("serviceCategoryId") Integer categoryId,
+    		@PathVariable("serviceId") Integer serviceId) {
+    	ServiceCategory sc = serviceCategoryRepository.findServiceCategoryById(categoryId);
+    	Service s = serviceRepository.findServiceById(serviceId);
+    	List<Service> services = sc.getServices();
+    	services.add(s);
+    	sc.setServices(services);
+    	return serviceCategoryRepository.save(sc);
     }
     
     @DeleteMapping("/api/categories/{serviceCategoryId}")
     public void deleteServiceCategory(
             @PathVariable("serviceCategoryId") Integer id) {
-        serviceRepository.deleteById(id);
+    	serviceCategoryRepository.deleteById(id);
     }
 }

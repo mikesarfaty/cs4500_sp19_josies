@@ -21,7 +21,6 @@ public class ServiceCategory {
     private Integer id;
     private String title;
     @ManyToMany
-    @JsonIgnore
     @JoinTable(
             name="CATEGORIES_SERVICES",
             joinColumns=@JoinColumn(name="CATEGORY_ID", referencedColumnName="ID"),
