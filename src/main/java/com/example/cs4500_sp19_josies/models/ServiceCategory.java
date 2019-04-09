@@ -20,6 +20,9 @@ public class ServiceCategory {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    private Integer popularity;
+    private String icon;
+
     @ManyToMany
     @JoinTable(
             name="CATEGORIES_SERVICES",
@@ -29,7 +32,7 @@ public class ServiceCategory {
     public Integer getId() {
         return id;
     }
-    public void setgId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getTitle() {
@@ -39,9 +42,27 @@ public class ServiceCategory {
         this.title = title;
     }
     public List<Service> getServices() {
-        return services;
+        return this.services;
     }
     public void setServices(List<Service> services) {
         this.services = services;
+    }
+
+    public ServiceCategory() {}
+    public ServiceCategory(Integer id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+    public Integer getPopularity() {
+        return popularity;
+    }
+    public void setPopularity(Integer popularity) {
+        this.popularity = popularity;
+    }
+    public String getIcon() {
+        return icon;
+    }
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }
