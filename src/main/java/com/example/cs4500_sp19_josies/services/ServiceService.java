@@ -3,7 +3,10 @@ package com.example.cs4500_sp19_josies.services;
 import java.util.List;
 
 import com.example.cs4500_sp19_josies.models.Service;
+import com.example.cs4500_sp19_josies.models.User;
 import com.example.cs4500_sp19_josies.repositories.ServiceRepository;
+import com.example.cs4500_sp19_josies.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class ServiceService {
     @Autowired
     ServiceRepository serviceRepository;
+    @Autowired
+    UserRepository userRepository;
     @GetMapping("/api/services")
     public List<Service> findAllService() {
         return serviceRepository.findAllServices();
@@ -45,5 +50,21 @@ public class ServiceService {
     public void deleteService(
             @PathVariable("serviceId") Integer id) {
         serviceRepository.deleteById(id);
+    }
+    
+    @PostMapping("/api/services/{serviceId}/users/{userId}")
+    public Service registerProvider(
+    		@PathVariable("serviceId") Integer serviceId,
+    		@PathVariable("userId") Integer userId) {
+    	User user = userRepository.findUserById(userId);
+    	Service service = serviceRepository.findServiceById(serviceId);
+    	List<Service> usersServices = user.getServices();
+    	usersServices.add(service);
+    	user.setServices(usersServices);
+    	List<User> providers = service.getProviders();
+    	providers.add(user);
+    	service.setProviders(providers);
+    	userRepository.save(user);
+    	return service;
     }
 }
