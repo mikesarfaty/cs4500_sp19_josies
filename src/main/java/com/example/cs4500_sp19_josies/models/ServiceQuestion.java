@@ -1,11 +1,13 @@
 package com.example.cs4500_sp19_josies.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -18,6 +20,11 @@ public class ServiceQuestion {
     private String question;
     private QuestionType type;
     private String choices;
+    @ManyToOne
+    @JsonIgnore
+    // Added in filtering. Since we added questions to our Service file, we need to add
+    // the relationship here as well.
+    private Service service;
     @OneToMany(mappedBy = "serviceQuestion")
     private List<ServiceAnswer> serviceAnswers;
 
@@ -54,7 +61,6 @@ public class ServiceQuestion {
         return type;
     }
 
-
     public void setType(QuestionType type) {
         this.type = type;
     }
@@ -65,5 +71,13 @@ public class ServiceQuestion {
 
     public void setChoices(String choices) {
         this.choices = choices;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
     }
 }
