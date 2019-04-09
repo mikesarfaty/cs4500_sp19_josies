@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -20,14 +21,17 @@ public class Service {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    @OneToMany(mappedBy="service")
+    // List of questions for the given service, needed for service provider navigator.
+    private List<ServiceQuestion> questions;
     @ManyToMany
-    @JsonIgnore
     @JoinTable(
             name="PROVIDERS_SERVICES",
             joinColumns=@JoinColumn(name="SERVICE_ID", referencedColumnName="ID"),
             inverseJoinColumns=@JoinColumn(name="USER_ID", referencedColumnName="ID"))
     private List<User> providers;
     @ManyToMany(mappedBy="services")
+    @JsonIgnore // This is needed to prevent infinite printing.
     private List<ServiceCategory> serviceCategories;
     public List<ServiceCategory> getServiceCategories() {
         return serviceCategories;
@@ -53,7 +57,12 @@ public class Service {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    public List<ServiceQuestion> getQuestions() {
+        return questions;
+    }
+    public void setQuestions(List<ServiceQuestion> questions) {
+        this.questions = questions;
+    }
     public Service(Integer id, String title) {
         this.id = id;
         this.title = title;
