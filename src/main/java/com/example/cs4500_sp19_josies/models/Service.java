@@ -31,7 +31,7 @@ public class Service {
             inverseJoinColumns=@JoinColumn(name="USER_ID", referencedColumnName="ID"))
     private List<User> providers;
     @ManyToMany(mappedBy="services")
-    @JsonIgnore
+    @JsonIgnoreProperties("services")
     private List<ServiceCategory> serviceCategories;
     public List<ServiceCategory> getServiceCategories() {
         return serviceCategories;
