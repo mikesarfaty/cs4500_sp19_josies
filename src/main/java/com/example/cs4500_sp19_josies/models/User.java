@@ -31,7 +31,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<FrequentlyAskedAnswer> frequentlyAskedAnswers;
     @ManyToMany(mappedBy = "providers")
-    @JsonIgnore
+    @JsonIgnoreProperties("providers")
     private List<Service> services;
 
     public List<Service> getServices() {

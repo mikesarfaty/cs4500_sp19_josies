@@ -24,7 +24,7 @@ public class Service {
     private Integer id;
     private String title;
     @ManyToMany
-    @JsonIgnoreProperties("providers")
+    @JsonIgnoreProperties("services")
     @JoinTable(
             name="PROVIDERS_SERVICES",
             joinColumns=@JoinColumn(name="SERVICE_ID", referencedColumnName="ID"),
