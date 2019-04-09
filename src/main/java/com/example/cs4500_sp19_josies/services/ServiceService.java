@@ -58,13 +58,9 @@ public class ServiceService {
     		@PathVariable("userId") Integer userId) {
     	User user = userRepository.findUserById(userId);
     	Service service = serviceRepository.findServiceById(serviceId);
-    	List<Service> usersServices = user.getServices();
-    	usersServices.add(service);
-    	user.setServices(usersServices);
     	List<User> providers = service.getProviders();
     	providers.add(user);
     	service.setProviders(providers);
-    	userRepository.save(user);
-    	return service;
+    	return serviceRepository.save(service);
     }
 }
