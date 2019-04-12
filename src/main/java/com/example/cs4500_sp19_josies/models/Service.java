@@ -1,6 +1,7 @@
 package com.example.cs4500_sp19_josies.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class Service {
             inverseJoinColumns=@JoinColumn(name="USER_ID", referencedColumnName="ID"))
     private List<User> providers;
     @ManyToMany(mappedBy="services")
-    @JsonIgnore // This is needed to prevent infinite printing.
+    @JsonIgnoreProperties("services")
     private List<ServiceCategory> serviceCategories;
     public List<ServiceCategory> getServiceCategories() {
         return serviceCategories;

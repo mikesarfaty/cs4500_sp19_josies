@@ -15,8 +15,7 @@ public class ServiceAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    // Updated for filtering. Instead of multiple types of answer, just have an answer title.
-    private String title;
+    private String answer;
     @ManyToOne
     @JsonIgnore
     private ServiceQuestion serviceQuestion;
@@ -24,9 +23,9 @@ public class ServiceAnswer {
     @JsonIgnore
     private User provider;
 
-    public ServiceAnswer(ServiceQuestion serviceQuestion, String title, User provider) {
+    public ServiceAnswer(ServiceQuestion serviceQuestion, String answer, User provider) {
         this.serviceQuestion = serviceQuestion;
-        this.title = title;
+        this.answer = answer;
         this.provider = provider;
     }
 
@@ -42,12 +41,12 @@ public class ServiceAnswer {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public ServiceQuestion getServiceQuestion() {

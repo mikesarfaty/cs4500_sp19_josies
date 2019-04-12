@@ -1,6 +1,7 @@
 package com.example.cs4500_sp19_josies.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class ServiceQuestion {
     private QuestionType type;
     private String choices;
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties("questions")
     // Added in filtering. Since we added questions to our Service file, we need to add
     // the relationship here as well.
     private Service service;

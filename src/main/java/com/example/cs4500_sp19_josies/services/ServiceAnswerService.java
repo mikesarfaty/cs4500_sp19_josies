@@ -33,7 +33,7 @@ public class ServiceAnswerService {
             @PathVariable("service-answerId") Integer id,
             @RequestBody ServiceAnswer answerUpdates) {
         ServiceAnswer answer = repository.findServiceAnswerById(id);
-        answer.setTitle(answerUpdates.getTitle());
+        answer.setAnswer(answerUpdates.getAnswer());
         return repository.save(answer);
     }
     @DeleteMapping("/api/service-answers/{service-answerId}")
