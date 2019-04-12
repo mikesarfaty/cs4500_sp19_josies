@@ -58,6 +58,11 @@ public class ServiceCategoryService {
     	ServiceCategory sc = serviceCategoryRepository.findServiceCategoryById(categoryId);
     	Service s = serviceRepository.findServiceById(serviceId);
     	List<Service> services = sc.getServices();
+    	for (Service serviceInCategory : services) {
+    		if (serviceInCategory.getId() == s.getId()) {
+    			return sc;
+    		}
+    	}
     	services.add(s);
     	sc.setServices(services);
     	return serviceCategoryRepository.save(sc);
