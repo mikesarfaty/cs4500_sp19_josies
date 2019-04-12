@@ -26,6 +26,8 @@ public class Business {
     private String instagram_url;
     private String twitter_url;
 
+    private User business_owner;
+
 
     public Integer getId() {
         return id;
@@ -129,6 +131,14 @@ public class Business {
 
     public void setTwitter_url(String twitter_url) {
         this.twitter_url = twitter_url;
+    }
+
+    public User getBusiness_owner() {
+        return business_owner;
+    }
+
+    public void setBusiness_owner(User owner) {
+        this.business_owner = owner;
     }
 
 
