@@ -68,6 +68,22 @@ public class ServiceCategoryService {
     	return serviceCategoryRepository.save(sc);
     }
     
+    @DeleteMapping("/api/categories/{serviceCategoryId}/services/{serviceId}")
+    public ServiceCategory deregisterServiceToCategory(
+    		@PathVariable("serviceCategoryId") Integer categoryId,
+    		@PathVariable("serviceId") Integer badServiceId) {
+    	ServiceCategory sc = serviceCategoryRepository.findServiceCategoryById(categoryId);
+    	List<Service> services = sc.getServices();
+    	List<Service> newServices = new ArrayList<Service>();
+    	for (Service serviceInCategory : services) {
+    		if (serviceInCategory.getId() != badServiceId) {
+    			newServices.add(serviceInCategory);
+    		}
+    	}
+    	sc.setServices(newServices);
+    	return serviceCategoryRepository.save(sc);
+    }
+    
     @DeleteMapping("/api/categories/{serviceCategoryId}")
     public void deleteServiceCategory(
             @PathVariable("serviceCategoryId") Integer id) {
