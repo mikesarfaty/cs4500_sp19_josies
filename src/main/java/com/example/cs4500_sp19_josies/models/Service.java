@@ -1,6 +1,7 @@
 package com.example.cs4500_sp19_josies.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
@@ -23,14 +24,14 @@ public class Service {
     private Integer id;
     private String title;
     @ManyToMany
-    @JsonIgnore
+    @JsonIgnoreProperties("services")
     @JoinTable(
             name="PROVIDERS_SERVICES",
             joinColumns=@JoinColumn(name="SERVICE_ID", referencedColumnName="ID"),
             inverseJoinColumns=@JoinColumn(name="USER_ID", referencedColumnName="ID"))
     private List<User> providers;
     @ManyToMany(mappedBy="services")
-    @JsonIgnore
+    @JsonIgnoreProperties("services")
     private List<ServiceCategory> serviceCategories;
     public List<ServiceCategory> getServiceCategories() {
         return serviceCategories;
