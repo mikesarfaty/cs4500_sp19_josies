@@ -20,7 +20,7 @@ public class Business {
     private String state;
     private Integer zipcode;
 
-    private List<String>payment;
+    private List<String>payments;
 
     private String facebook_url;
     private String instagram_url;
