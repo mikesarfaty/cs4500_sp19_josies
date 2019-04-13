@@ -73,10 +73,11 @@ public class ServiceCategoryService {
     		@PathVariable("serviceCategoryId") Integer categoryId,
     		@PathVariable("serviceId") Integer badServiceId) {
     	ServiceCategory sc = serviceCategoryRepository.findServiceCategoryById(categoryId);
+    	Service badService = serviceRepository.findServiceById(badServiceId);
     	List<Service> services = sc.getServices();
     	List<Service> newServices = new ArrayList<Service>();
     	for (Service serviceInCategory : services) {
-    		if (serviceInCategory.getId() != badServiceId) {
+    		if (serviceInCategory.getId() != badService.getId()) {
     			newServices.add(serviceInCategory);
     		}
     	}
