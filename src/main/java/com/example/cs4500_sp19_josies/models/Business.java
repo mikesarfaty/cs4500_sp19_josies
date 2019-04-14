@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="business")
 public class Business {
 
     @Id
@@ -102,11 +104,11 @@ public class Business {
     }
 
     public List<String> getPayment() {
-        return payment;
+        return payments;
     }
 
     public void setPayment(List<String> payment) {
-        this.payment = payment;
+        this.payments = payment;
     }
 
     public String getFacebook_url() {
