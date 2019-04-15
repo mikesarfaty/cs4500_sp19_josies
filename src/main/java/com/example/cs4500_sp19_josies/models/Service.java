@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="services")
 public class Service {
@@ -26,6 +28,7 @@ public class Service {
     // List of questions for the given service, needed for service provider navigator.
     private List<ServiceQuestion> questions;
     @ManyToMany
+    @JsonIgnoreProperties("services")
     @JoinTable(
             name="PROVIDERS_SERVICES",
             joinColumns=@JoinColumn(name="SERVICE_ID", referencedColumnName="ID"),

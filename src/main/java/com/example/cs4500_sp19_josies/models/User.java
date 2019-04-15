@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -32,6 +35,7 @@ public class User {
     // Moving the JsonIgnore to this side for now.
     @JsonIgnore
     @ManyToMany(mappedBy = "providers")
+    @JsonIgnoreProperties("providers")
     private List<Service> services;
 
     public List<Service> getServices() {
