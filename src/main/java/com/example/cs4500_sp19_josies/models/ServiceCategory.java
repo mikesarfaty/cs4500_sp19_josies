@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="service_categories")
@@ -24,7 +25,7 @@ public class ServiceCategory {
     private String icon;
     
     @ManyToMany
-//    @JsonIgnore
+    @JsonIgnoreProperties("serviceCategories")
     @JoinTable(
             name="CATEGORIES_SERVICES",
             joinColumns=@JoinColumn(name="CATEGORY_ID", referencedColumnName="ID"),
