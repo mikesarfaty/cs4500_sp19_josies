@@ -52,7 +52,7 @@ public class ServiceAnswerServiceTest {
     public void setUpAnswer() {
         mockAnswer = new ServiceAnswer();
         mockAnswer.setId(1);
-        mockAnswer.setTrueFalseAnswer(Boolean.TRUE);
+        mockAnswer.setAnswer("True");
     }
 
     @Test
@@ -101,10 +101,10 @@ public class ServiceAnswerServiceTest {
 
         ServiceAnswer updatedAnswer = new ServiceAnswer();
         updatedAnswer.setId(1);
-        updatedAnswer.setTrueFalseAnswer(Boolean.FALSE);
+        updatedAnswer.setAnswer("False");
 
         Mockito.doAnswer((InvocationOnMock invocationOnMock) -> {
-            answers.get(0).setTrueFalseAnswer(updatedAnswer.getTrueFalseAnswer());
+            answers.get(0).setAnswer(updatedAnswer.getAnswer());
             return null;
         }).when(service).updateAnswer(any(Integer.class), any(ServiceAnswer.class));
 
@@ -122,7 +122,7 @@ public class ServiceAnswerServiceTest {
                 .andExpect(status().isOk());
 
         Assertions.assertEquals(1, answers.get(0).getId().intValue());
-        Assertions.assertEquals(Boolean.FALSE, answers.get(0).getTrueFalseAnswer());
+        Assertions.assertEquals("False", answers.get(0).getAnswer());
     }
 
     @Test
