@@ -1,7 +1,5 @@
 package com.example.cs4500_sp19_josies.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,7 +20,8 @@ public class Business {
     private String state;
     private Integer zipcode;
 
-    private List<String>payments;
+    @OneToMany(mappedBy = "business")
+    private List<Payment>payments;
 
     private String facebook_url;
     private String instagram_url;
@@ -103,12 +102,12 @@ public class Business {
         this.zipcode = zipcode;
     }
 
-    public List<String> getPayment() {
+    public List<Payment> getPayments() {
         return payments;
     }
 
-    public void setPayment(List<String> payment) {
-        this.payments = payment;
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 
     public String getFacebook_url() {
