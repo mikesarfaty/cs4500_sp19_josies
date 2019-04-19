@@ -5,11 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+// NOT NEEDED. Can be deleted. Kept for now.
+
 @Entity
 @Table(name="payment")
 public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
     private String payment_name;
     @ManyToOne
