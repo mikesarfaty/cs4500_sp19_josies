@@ -10,6 +10,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -28,6 +31,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<FrequentlyAskedAnswer> frequentlyAskedAnswers;
     @ManyToMany(mappedBy = "providers")
+    @JsonIgnoreProperties("providers")
     private List<Service> services;
 
     public List<Service> getServices() {
