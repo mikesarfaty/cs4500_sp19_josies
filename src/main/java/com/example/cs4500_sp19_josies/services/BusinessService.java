@@ -48,7 +48,7 @@ public class BusinessService {
     b.setCity(updates.getCity());
     b.setState(updates.getState());
     b.setZipcode(updates.getZipcode());
-    b.setPayment(updates.getPayment());
+    b.setPayments(updates.getPayments());
     b.setFacebook_url(updates.getFacebook_url());
     b.setInstagram_url(updates.getInstagram_url());
     b.setTwitter_url(updates.getTwitter_url());
