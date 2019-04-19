@@ -20,8 +20,10 @@ public class Business {
     private String state;
     private Integer zipcode;
 
-    @OneToMany(mappedBy = "business")
-    private List<Payment>payments;
+//    @OneToMany(mappedBy = "business")
+    @ElementCollection
+    private List<String>payments;
+
 
     private String facebook_url;
     private String instagram_url;
@@ -102,11 +104,11 @@ public class Business {
         this.zipcode = zipcode;
     }
 
-    public List<Payment> getPayments() {
+    public List<String> getPayments() {
         return payments;
     }
 
-    public void setPayments(List<Payment> payments) {
+    public void setPayments(List<String> payments) {
         this.payments = payments;
     }
 
