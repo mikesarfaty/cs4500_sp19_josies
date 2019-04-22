@@ -92,7 +92,7 @@ public class ServiceAnswerServiceTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value("1"))
-                .andExpect(jsonPath("$.answer").value("true"));
+                .andExpect(jsonPath("$.answer").value("True"));
 
     }
 
