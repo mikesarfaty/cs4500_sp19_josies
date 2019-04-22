@@ -32,8 +32,6 @@ public class User {
     private List<ServiceAnswer> serviceAnswers;
     @OneToMany(mappedBy = "user")
     private List<FrequentlyAskedAnswer> frequentlyAskedAnswers;
-    // Moving the JsonIgnore to this side for now.
-    @JsonIgnore
     @ManyToMany(mappedBy = "providers")
     @JsonIgnoreProperties("providers")
     private List<Service> services;
