@@ -45,7 +45,28 @@ public class ServiceSearch {
                 }
 
                 // Score it.
-                if (providerAnswer.getAnswer().equals(searchAnswer.getAnswer())) {
+                if (providerAnswer.getServiceQuestion().getType() == QuestionType.Range) {
+                    String[] searchRange = searchAnswer.getAnswer().split(",");
+                    String[] providerRange = providerAnswer.getAnswer().split(",");
+                    int[] searchRangeInts = new int[searchRange.length];
+                    int[] providerRangeInts = new int[providerRange.length];
+                    
+                    for (int i = 0; i < searchRange.length; i++) {
+                        searchRangeInts[i] = Integer.parseInt(searchRange[i]);
+                        providerRangeInts[i] = Integer.parseInt(providerRange[i]);
+                    }
+
+                    int searchLowerBound = searchRangeInts[0];
+                    int searchHigherBound = searchRangeInts[1];
+                    int providerLowerBound = providerRangeInts[0];
+                    int providerHigherBound = providerRangeInts[1];
+
+                    if ((searchLowerBound >= providerLowerBound && searchLowerBound <= providerHigherBound)
+                            || (searchHigherBound >= providerLowerBound && searchHigherBound <= providerHigherBound)) {
+                        providerScores.put(p, providerScores.get(p) + 1);
+                    }
+                }
+                else if (providerAnswer.getAnswer().equals(searchAnswer.getAnswer())) {
                     providerScores.put(p, providerScores.get(p) + 1);
                 }
             }
@@ -55,11 +76,9 @@ public class ServiceSearch {
 
         List<User> found = new ArrayList<>();
 
-        // Remove any providers that don't have at least one matched search predicate.
         for (User p : providersByScore) {
             if (providerScores.get(p) == 0) {
                 found.add(p);
-                //providersByScore.remove(p);
             }
         }
 
