@@ -1,4 +1,4 @@
-package com.example.cs4500_sp19_josies.tests;
+package com.example.cs4500_sp19_josies;
 
 import com.example.cs4500_sp19_josies.algorithms.ServiceSearch;
 import com.example.cs4500_sp19_josies.models.*;
