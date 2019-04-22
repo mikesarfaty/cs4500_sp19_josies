@@ -25,8 +25,32 @@ public class User {
     private String username;
     private String password;
     private String firstName;
+
+    public User(String username, String password, String firstName, String lastName, String role, String month, String day, String year, String city, String state, String street, String zip) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+        this.month = month;
+        this.day = day;
+        this.year = year;
+        this.city = city;
+        this.state = state;
+        this.street = street;
+        this.zip = zip;
+    }
+
     private String lastName;
     private String role;
+    private String month;
+    private String day;
+    private String year;
+    private String city;
+    private String state;
+    private String street;
+    private String zip;
 
     @OneToMany(mappedBy="provider")
     private List<ServiceAnswer> serviceAnswers;
@@ -50,19 +74,6 @@ public class User {
 
     public void setFrequentlyAskedAnswers(List<FrequentlyAskedAnswer> frequentlyAskedAnswers) {
         this.frequentlyAskedAnswers = frequentlyAskedAnswers;
-    }
-
-    public User() {
-    }
-
-    public User(Integer id, String username, String password, String firstName, String lastName, String role) {
-        super();
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
     }
 
     public String getUsername() {
@@ -119,5 +130,61 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 }
