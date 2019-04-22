@@ -1,5 +1,7 @@
 package com.example.cs4500_sp19_josies.services;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,41 +50,8 @@ public class ServiceCategoryService {
             @RequestBody ServiceCategory serviceUpdates) {
         ServiceCategory serviceCategory = serviceCategoryRepository.findServiceCategoryById(id);
         serviceCategory.setTitle(serviceUpdates.getTitle());
+        serviceCategory.setServices(serviceUpdates.getServices());
         return serviceCategoryRepository.save(serviceCategory);
-    }
-    
-    @PostMapping("/api/categories/{serviceCategoryId}/services/{serviceId}")
-    public ServiceCategory registerServiceToCategory(
-    		@PathVariable("serviceCategoryId") Integer categoryId,
-    		@PathVariable("serviceId") Integer serviceId) {
-    	ServiceCategory sc = serviceCategoryRepository.findServiceCategoryById(categoryId);
-    	Service s = serviceRepository.findServiceById(serviceId);
-    	List<Service> services = sc.getServices();
-    	for (Service serviceInCategory : services) {
-    		if (serviceInCategory.getId() == s.getId()) {
-    			return sc;
-    		}
-    	}
-    	services.add(s);
-    	sc.setServices(services);
-    	return serviceCategoryRepository.save(sc);
-    }
-    
-    @DeleteMapping("/api/categories/{serviceCategoryId}/services/{serviceId}")
-    public ServiceCategory deregisterServiceToCategory(
-    		@PathVariable("serviceCategoryId") Integer categoryId,
-    		@PathVariable("serviceId") Integer badServiceId) {
-    	ServiceCategory sc = serviceCategoryRepository.findServiceCategoryById(categoryId);
-    	Service badService = serviceRepository.findServiceById(badServiceId);
-    	List<Service> services = sc.getServices();
-    	List<Service> newServices = new ArrayList<Service>();
-    	for (Service serviceInCategory : services) {
-    		if (serviceInCategory.getId() != badService.getId()) {
-    			newServices.add(serviceInCategory);
-    		}
-    	}
-    	sc.setServices(newServices);
-    	return serviceCategoryRepository.save(sc);
     }
     
     @DeleteMapping("/api/categories/{serviceCategoryId}")
