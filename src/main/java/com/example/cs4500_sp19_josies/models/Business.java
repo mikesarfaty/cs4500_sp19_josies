@@ -18,7 +18,7 @@ public class Business {
     private String street;
     private String city;
     private String state;
-    private Integer zipcode;
+    private String zipcode;
 
 //    @OneToMany(mappedBy = "business")
     @ElementCollection
@@ -96,11 +96,11 @@ public class Business {
         this.state = state;
     }
 
-    public Integer getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(Integer zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 

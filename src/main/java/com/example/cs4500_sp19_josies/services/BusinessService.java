@@ -56,9 +56,8 @@ public class BusinessService {
   }
 
   @DeleteMapping("/api/businesses/{id}")
-  public void deleteFrequentlyAskedQuestion(
+  public void deleteBusiness(
           @PathVariable("id") Integer id) {
-    Business b = repository.findBusinessById(id);
     repository.deleteById(id);
   }
 }
