@@ -45,41 +45,8 @@ public class ServiceSearch {
                 }
 
                 // Score it.
-                switch (questionType) {
-                    case MultipleChoice:
-                        if (providerAnswer.getChoiceAnswer().equals(searchAnswer.getChoiceAnswer())) {
-                            providerScores.put(p, providerScores.get(p) + 1);
-                        }
-                        else {
-                            providerScores.put(p, providerScores.get(p));
-                        }
-                        break;
-                    case TrueFalse:
-                        if (providerAnswer.getTrueFalseAnswer().equals(searchAnswer.getTrueFalseAnswer())) {
-                            providerScores.put(p, providerScores.get(p) + 1);
-                        }
-                        else {
-                            providerScores.put(p, providerScores.get(p));
-                        }
-                        break;
-                    case Range:
-
-
-                        int searchAnswerMin = searchAnswer.getMinRangeAnswer();
-                        int searchAnswerMax = searchAnswer.getMaxRangeAnswer();
-
-                        if ((searchAnswerMin <= providerAnswer.getMaxRangeAnswer() &&
-                                searchAnswerMin >= providerAnswer.getMinRangeAnswer())
-                                || (searchAnswerMax <= providerAnswer.getMaxRangeAnswer() &&
-                                searchAnswerMax >= providerAnswer.getMinRangeAnswer())) {
-                            providerScores.put(p, providerScores.get(p) + 1);
-                        }
-
-                        break;
-                    default:
-                        // This is just a default case -- QuestionType is fully enumerated, so
-                        // this branch will never be reached.
-                        break;
+                if (providerAnswer.getAnswer().equals(searchAnswer.getAnswer())) {
+                    providerScores.put(p, providerScores.get(p) + 1);
                 }
             }
         }

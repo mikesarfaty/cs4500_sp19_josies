@@ -15,10 +15,7 @@ public class ServiceAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Boolean trueFalseAnswer;
-    private Integer maxRangeAnswer;
-    private Integer minRangeAnswer;
-    private Integer choiceAnswer;
+    private String answer;
     @ManyToOne
     @JsonIgnore
     private ServiceQuestion serviceQuestion;
@@ -26,12 +23,9 @@ public class ServiceAnswer {
     @JsonIgnore
     private User provider;
 
-    public ServiceAnswer(Boolean trueFalseAnswer, Integer maxRangeAnswer, Integer minRangeAnswer, Integer choiceAnswer, ServiceQuestion serviceQuestion, User provider) {
-        this.trueFalseAnswer = trueFalseAnswer;
-        this.maxRangeAnswer = maxRangeAnswer;
-        this.minRangeAnswer = minRangeAnswer;
-        this.choiceAnswer = choiceAnswer;
+    public ServiceAnswer(ServiceQuestion serviceQuestion, String answer, User provider) {
         this.serviceQuestion = serviceQuestion;
+        this.answer = answer;
         this.provider = provider;
     }
 
@@ -47,36 +41,12 @@ public class ServiceAnswer {
         this.id = id;
     }
 
-    public Boolean getTrueFalseAnswer() {
-        return trueFalseAnswer;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setTrueFalseAnswer(Boolean trueFalseAnswer) {
-        this.trueFalseAnswer = trueFalseAnswer;
-    }
-
-    public Integer getMaxRangeAnswer() {
-        return maxRangeAnswer;
-    }
-
-    public void setMaxRangeAnswer(Integer maxRangeAnswer) {
-        this.maxRangeAnswer = maxRangeAnswer;
-    }
-
-    public Integer getMinRangeAnswer() {
-        return minRangeAnswer;
-    }
-
-    public void setMinRangeAnswer(Integer minRangeAnswer) {
-        this.minRangeAnswer = minRangeAnswer;
-    }
-
-    public Integer getChoiceAnswer() {
-        return choiceAnswer;
-    }
-
-    public void setChoiceAnswer(Integer choiceAnswer) {
-        this.choiceAnswer = choiceAnswer;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public ServiceQuestion getServiceQuestion() {
