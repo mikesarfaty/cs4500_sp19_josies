@@ -4,10 +4,11 @@ pipeline {
             stage('Testing') {
                 steps {
                     sh '''
-                        echo "Running junit jupiter tests"
+                        echo cleaning workspace
                         git clean -d -f
                         git checkout origin/master
-                        git pull
+                        git pull origin master
+                        echo "Running junit jupiter tests"
                         mvn clean test
                         '''
                 }
