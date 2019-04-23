@@ -17,7 +17,7 @@ pipeline {
                     sh '''
                         echo "Deploying to Heroku"
                         ls
-                        git remove -v
+                        git remote -v
                         git status
                         git push heroku master
                         '''
