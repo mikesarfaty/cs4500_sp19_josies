@@ -85,8 +85,9 @@ public class UserService {
                       HttpSession session) {
         List<User> users = userRepository.findAllUsers();
         for (User user : users) {
-            if (user.getEmail().equals(credentials.getEmail())
-                    && user.getPassword().equals(credentials.getPassword())) {
+            if (user.getEmail() != null &&
+                    user.getEmail().equals(credentials.getEmail()) &&
+                    user.getPassword().equals(credentials.getPassword())) {
                 session.setAttribute("currentUser", Integer.toString(user.getId()));
                 return user;
             }
