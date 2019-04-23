@@ -9,13 +9,5 @@ pipeline {
                         '''
                 }
             }
-            stage('Deploying') {
-                steps {
-                    sh '''
-                        echo "Deploying to Heroku"
-                        git push heroku master
-                        '''
-                }
-            }
         }
 }
