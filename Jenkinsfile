@@ -6,7 +6,7 @@ pipeline {
                     sh '''
                         echo "Running junit jupiter tests"
                         git clean -d -f
-                        git checkout origin master
+                        git checkout origin/master
                         git pull
                         mvn clean test
                         '''
