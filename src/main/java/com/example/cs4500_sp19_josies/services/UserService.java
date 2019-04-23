@@ -87,7 +87,7 @@ public class UserService {
         for (User user : users) {
             if (user.getUsername().equals(credentials.getUsername())
                     && user.getPassword().equals(credentials.getPassword())) {
-                session.setAttribute("currentUser", user);
+                session.setAttribute("currentUser", Integer.toString(user.getId()));
                 return user;
             }
         }
