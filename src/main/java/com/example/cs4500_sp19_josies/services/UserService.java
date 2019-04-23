@@ -42,6 +42,15 @@ public class UserService {
 		user.setUsername(userUpdates.getUsername());
 		user.setPassword(userUpdates.getPassword());
 		user.setRole(userUpdates.getRole());
+		user.setMonth(userUpdates.getMonth());
+		user.setDay(userUpdates.getDay());
+		user.setYear(userUpdates.getYear());
+		user.setCity(userUpdates.getCity());
+		user.setStreet(userUpdates.getStreet());
+		user.setState(userUpdates.getState());
+		user.setZip(userUpdates.getZip());
+		user.setServices(userUpdates.getServices());
+		user.setEmail(userUpdates.getEmail());
 		return userRepository.save(user);
 	}
 
