@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.cs4500_sp19_josies.models.User;
 import com.example.cs4500_sp19_josies.repositories.UserRepository;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @CrossOrigin(origins="*")
 public class UserService {
@@ -47,6 +49,8 @@ public class UserService {
 		user.setStreet(userUpdates.getStreet());
 		user.setState(userUpdates.getState());
 		user.setZip(userUpdates.getZip());
+		user.setServices(userUpdates.getServices());
+		user.setEmail(userUpdates.getEmail());
 		return userRepository.save(user);
 	}
 
@@ -55,4 +59,17 @@ public class UserService {
 			@PathVariable("userId") Integer id) {
 		userRepository.deleteById(id);
 	}
+
+	/*
+	 * Methods for registration.
+	 */
+	@PostMapping("/api/register")
+	public User register(
+			@RequestBody User user,
+			HttpSession session) {
+		User newUser = userRepository.save(user);
+		session.setAttribute("currentUser", newUser);
+		return user;
+	}
+
 }
