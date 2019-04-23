@@ -68,6 +68,8 @@ public class User {
 		this.services = services;
 	}
 
+	public User() {}
+
 	@OneToMany(mappedBy="provider")
 	@JsonIgnoreProperties("provider")
 	private List<ServiceAnswer> serviceAnswers;
