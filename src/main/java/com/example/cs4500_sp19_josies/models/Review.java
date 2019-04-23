@@ -1,12 +1,12 @@
 package com.example.cs4500_sp19_josies.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="reviews")
+@Table(name = "reviews")
 public class Review {
 
     @Id
@@ -15,19 +15,11 @@ public class Review {
     private String title;
     private String description;
 
-    @JsonIgnoreProperties("user")
-    @ManyToOne
+    @JsonIgnore
     private User reviewer;
 
-    @JsonIgnoreProperties("provider")
-    @ManyToOne
+    @JsonIgnore
     private User provider;
-
-    @Transient
-    private Integer reviewerId;
-
-    @Transient
-    private Integer providerId;
 
     public Review() {
 
@@ -71,21 +63,5 @@ public class Review {
 
     public void setProvider(User provider) {
         this.provider = provider;
-    }
-
-    public Integer getReviewerId() {
-        return reviewerId;
-    }
-
-    public void setReviewerId(Integer reviewerId) {
-        this.reviewerId = reviewerId;
-    }
-
-    public Integer getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
     }
 }

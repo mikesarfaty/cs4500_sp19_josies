@@ -1,7 +1,5 @@
 package com.example.cs4500_sp19_josies.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,7 +10,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -35,7 +32,7 @@ public class User {
 	private String state;
 	private String street;
 	private String zip;
-	
+
 
 	public User(String username,
 			String password,
@@ -79,6 +76,12 @@ public class User {
 	@ManyToMany(mappedBy = "providers")
 	@JsonIgnoreProperties("providers")
 	private List<Service> services;
+	@OneToMany(mappedBy = "provider")
+	@JsonIgnoreProperties("provider")
+	private List<Review> reviewsOfUser;
+	@OneToMany(mappedBy = "reviewer")
+	@JsonIgnoreProperties("reviewer")
+	private List<Review> reviewsByUser;
 
 	public List<Service> getServices() {
 		return services;
@@ -210,5 +213,21 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Review> getReviewsByUser() {
+		return reviewsByUser;
+	}
+
+	public void setReviewsByUser(List<Review> reviewsByUser) {
+		this.reviewsByUser = reviewsByUser;
+	}
+
+	public List<Review> getReviewsOfUser() {
+		return reviewsOfUser;
+	}
+
+	public void setReviewsOfUser(List<Review> reviewsOfUser) {
+		this.reviewsOfUser = reviewsOfUser;
 	}
 }
