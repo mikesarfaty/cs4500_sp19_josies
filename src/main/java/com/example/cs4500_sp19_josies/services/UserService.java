@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.cs4500_sp19_josies.models.Service;
 import com.example.cs4500_sp19_josies.models.User;
+import com.example.cs4500_sp19_josies.repositories.ServiceRepository;
 import com.example.cs4500_sp19_josies.repositories.UserRepository;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpSession;
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	ServiceRepository serviceRepository;
 
 	@GetMapping("/api/users")
 	public List<User> findAllUser() {
@@ -49,8 +53,12 @@ public class UserService {
 		user.setStreet(userUpdates.getStreet());
 		user.setState(userUpdates.getState());
 		user.setZip(userUpdates.getZip());
-		user.setServices(userUpdates.getServices());
 		user.setEmail(userUpdates.getEmail());
+		for (Service s : userUpdates.getServices()) {
+			Service ss = serviceRepository.findServiceById(s.getId());
+			ss.getProviders().add(userRepository.findUserById(user.getId()));
+			serviceRepository.save(ss);
+		}
 		return userRepository.save(user);
 	}
 
