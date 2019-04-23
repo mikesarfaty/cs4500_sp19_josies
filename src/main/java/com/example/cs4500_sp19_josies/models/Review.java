@@ -1,7 +1,7 @@
 package com.example.cs4500_sp19_josies.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -15,11 +15,11 @@ public class Review {
     private String title;
     private String description;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("user")
     @ManyToOne
     private User reviewer;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("provider")
     @ManyToOne
     private User provider;
 
