@@ -5,6 +5,7 @@ pipeline {
                 steps {
                     sh '''
                         echo "Running junit jupiter tests"
+                        git checkout origin master
                         mvn clean test
                         '''
                 }
@@ -13,6 +14,9 @@ pipeline {
                 steps {
                     sh '''
                         echo "Deploying to Heroku"
+                        ls
+                        git remove -v
+                        git status
                         git push heroku master
                         '''
                 }
