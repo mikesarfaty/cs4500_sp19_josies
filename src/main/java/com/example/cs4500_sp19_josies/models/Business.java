@@ -22,7 +22,7 @@ public class Business {
 
 //    @OneToMany(mappedBy = "business")
     @ElementCollection
-    private List<String>payments;
+    private List<String> payments;
 
 
     private String facebook_url;
