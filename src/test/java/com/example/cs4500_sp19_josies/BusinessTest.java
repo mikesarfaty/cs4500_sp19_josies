@@ -1,15 +1,13 @@
-package com.example.cs4500_sp19_josies.tests;
+package com.example.cs4500_sp19_josies;
 
 
-import com.example.cs4500_sp19_josies.models.Business;
-import com.example.cs4500_sp19_josies.repositories.BusinessRepository;
-import com.example.cs4500_sp19_josies.services.BusinessService;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,11 +16,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+
+
+
+import com.example.cs4500_sp19_josies.models.Business;
+import com.example.cs4500_sp19_josies.repositories.BusinessRepository;
+import com.example.cs4500_sp19_josies.services.BusinessService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +37,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(Business.class)
 public class BusinessTest {
 
