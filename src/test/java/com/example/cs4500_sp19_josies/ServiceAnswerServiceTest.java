@@ -1,4 +1,4 @@
-package com.example.cs4500_sp19_josies.tests;
+package com.example.cs4500_sp19_josies;
 
 import com.example.cs4500_sp19_josies.models.QuestionType;
 import com.example.cs4500_sp19_josies.models.ServiceAnswer;
@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,7 +32,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(ServiceAnswerService.class)
 public class ServiceAnswerServiceTest {
 
@@ -52,7 +54,7 @@ public class ServiceAnswerServiceTest {
     public void setUpAnswer() {
         mockAnswer = new ServiceAnswer();
         mockAnswer.setId(1);
-        mockAnswer.setTrueFalseAnswer(Boolean.TRUE);
+        mockAnswer.setAnswer("True");
     }
 
     @Test
@@ -90,7 +92,7 @@ public class ServiceAnswerServiceTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value("1"))
-                .andExpect(jsonPath("$.trueFalseAnswer").value("true"));
+                .andExpect(jsonPath("$.answer").value("True"));
 
     }
 
@@ -101,10 +103,10 @@ public class ServiceAnswerServiceTest {
 
         ServiceAnswer updatedAnswer = new ServiceAnswer();
         updatedAnswer.setId(1);
-        updatedAnswer.setTrueFalseAnswer(Boolean.FALSE);
+        updatedAnswer.setAnswer("False");
 
         Mockito.doAnswer((InvocationOnMock invocationOnMock) -> {
-            answers.get(0).setTrueFalseAnswer(updatedAnswer.getTrueFalseAnswer());
+            answers.get(0).setAnswer(updatedAnswer.getAnswer());
             return null;
         }).when(service).updateAnswer(any(Integer.class), any(ServiceAnswer.class));
 
@@ -122,7 +124,7 @@ public class ServiceAnswerServiceTest {
                 .andExpect(status().isOk());
 
         Assertions.assertEquals(1, answers.get(0).getId().intValue());
-        Assertions.assertEquals(Boolean.FALSE, answers.get(0).getTrueFalseAnswer());
+        Assertions.assertEquals("False", answers.get(0).getAnswer());
     }
 
     @Test

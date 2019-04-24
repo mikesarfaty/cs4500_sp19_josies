@@ -5,14 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.cs4500_sp19_josies.models.Service;
 import com.example.cs4500_sp19_josies.models.User;
+import com.example.cs4500_sp19_josies.repositories.ServiceRepository;
 import com.example.cs4500_sp19_josies.repositories.UserRepository;
+
+import javax.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin(origins="*")
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	ServiceRepository serviceRepository;
 
 	@GetMapping("/api/users")
 	public List<User> findAllUser() {
@@ -40,6 +46,19 @@ public class UserService {
 		user.setUsername(userUpdates.getUsername());
 		user.setPassword(userUpdates.getPassword());
 		user.setRole(userUpdates.getRole());
+		user.setMonth(userUpdates.getMonth());
+		user.setDay(userUpdates.getDay());
+		user.setYear(userUpdates.getYear());
+		user.setCity(userUpdates.getCity());
+		user.setStreet(userUpdates.getStreet());
+		user.setState(userUpdates.getState());
+		user.setZip(userUpdates.getZip());
+		user.setEmail(userUpdates.getEmail());
+		for (Service s : userUpdates.getServices()) {
+			Service ss = serviceRepository.findServiceById(s.getId());
+			ss.getProviders().add(userRepository.findUserById(user.getId()));
+			serviceRepository.save(ss);
+		}
 		return userRepository.save(user);
 	}
 
@@ -48,4 +67,39 @@ public class UserService {
 			@PathVariable("userId") Integer id) {
 		userRepository.deleteById(id);
 	}
+
+	/*
+	 * Methods for registration.
+	 */
+	@PostMapping("/api/register")
+	public User register(
+			@RequestBody User user,
+			HttpSession session) {
+		User newUser = userRepository.save(user);
+		session.setAttribute("currentUser", newUser);
+		return user;
+	}
+
+    @PostMapping("/api/login")
+    public User login(@RequestBody User credentials,
+                      HttpSession session) {
+        List<User> users = userRepository.findAllUsers();
+        for (User user : users) {
+            if (user.getEmail() != null &&
+                    user.getEmail().equals(credentials.getEmail()) &&
+                    user.getPassword().equals(credentials.getPassword())) {
+                session.setAttribute("currentUser", Integer.toString(user.getId()));
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @PostMapping("/api/logout")
+    public void logout
+            (HttpSession session) {
+        session.invalidate();
+    }
+
+
 }

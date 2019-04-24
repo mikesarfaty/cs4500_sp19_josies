@@ -23,7 +23,7 @@ public class ServiceCategory {
     private String title;
     private Integer popularity;
     private String icon;
-
+    
     @ManyToMany
     @JsonIgnoreProperties("serviceCategories")
     @JoinTable(

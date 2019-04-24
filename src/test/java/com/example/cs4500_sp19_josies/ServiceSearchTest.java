@@ -1,4 +1,4 @@
-package com.example.cs4500_sp19_josies.tests;
+package com.example.cs4500_sp19_josies;
 
 import com.example.cs4500_sp19_josies.algorithms.ServiceSearch;
 import com.example.cs4500_sp19_josies.models.*;
@@ -41,8 +41,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer samsRooms = new ServiceAnswer();
         samsRooms.setId(1);
-        samsRooms.setMinRangeAnswer(5);
-        samsRooms.setMaxRangeAnswer(6);
+        samsRooms.setAnswer("5,6");
         samsRooms.setProvider(sam);
         samsRooms.setServiceQuestion(numberOfRooms);
         List<ServiceAnswer> samsAnswers = new ArrayList<>();
@@ -51,8 +50,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer josesRooms = new ServiceAnswer();
         josesRooms.setId(2);
-        josesRooms.setMinRangeAnswer(1);
-        josesRooms.setMaxRangeAnswer(3);
+        josesRooms.setAnswer("1,3");
         josesRooms.setProvider(jose);
         josesRooms.setServiceQuestion(numberOfRooms);
         List<ServiceAnswer> josesAnswers = new ArrayList<>();
@@ -62,8 +60,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer jacksRooms = new ServiceAnswer();
         jacksRooms.setId(2);
-        jacksRooms.setMinRangeAnswer(3);
-        jacksRooms.setMaxRangeAnswer(5);
+        jacksRooms.setAnswer("3,5");
         jacksRooms.setProvider(jack);
         jacksRooms.setServiceQuestion(numberOfRooms);
         List<ServiceAnswer> jacksAnswers = new ArrayList<>();
@@ -80,8 +77,7 @@ public class ServiceSearchTest {
         predicate.setQuestion(numberOfRooms);
         ServiceAnswer predAnswer = new ServiceAnswer();
         predAnswer.setServiceQuestion(numberOfRooms);
-        predAnswer.setMaxRangeAnswer(1);
-        predAnswer.setMinRangeAnswer(2);
+        predAnswer.setAnswer("1,2");
         predicate.setAnswer(predAnswer);
 
         SearchCriteria criteria = new SearchCriteria();
@@ -102,7 +98,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer samsPets = new ServiceAnswer();
         samsPets.setId(1);
-        samsPets.setTrueFalseAnswer(Boolean.TRUE);
+        samsPets.setAnswer("True");
         samsPets.setServiceQuestion(havePets);
         samsPets.setProvider(sam);
         List<ServiceAnswer> samsAnswers = new ArrayList<>();
@@ -111,7 +107,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer jacksPets = new ServiceAnswer();
         jacksPets.setId(2);
-        jacksPets.setTrueFalseAnswer(Boolean.FALSE);
+        jacksPets.setAnswer("False");
         jacksPets.setServiceQuestion(havePets);
         jacksPets.setProvider(jack);
         List<ServiceAnswer> jacksAnswers = new ArrayList<>();
@@ -120,7 +116,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer josesPets = new ServiceAnswer();
         josesPets.setId(3);
-        josesPets.setTrueFalseAnswer(Boolean.FALSE);
+        josesPets.setAnswer("False");
         josesPets.setServiceQuestion(havePets);
         josesPets.setProvider(jose);
         List<ServiceAnswer> josesAnswers = new ArrayList<>();
@@ -137,7 +133,7 @@ public class ServiceSearchTest {
         predicate.setQuestion(havePets);
         ServiceAnswer predAnswer = new ServiceAnswer();
         predAnswer.setServiceQuestion(numberOfRooms);
-        predAnswer.setTrueFalseAnswer(Boolean.TRUE);
+        predAnswer.setAnswer("True");
         predicate.setAnswer(predAnswer);
 
         SearchCriteria criteria = new SearchCriteria();
@@ -168,7 +164,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer samsType = new ServiceAnswer();
         samsType.setId(1);
-        samsType.setChoiceAnswer(1);
+        samsType.setAnswer("1");
         samsType.setServiceQuestion(typeOfCleaning);
         samsType.setProvider(sam);
         List<ServiceAnswer> samsAnswers = new ArrayList<>();
@@ -177,7 +173,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer josesType = new ServiceAnswer();
         josesType.setId(2);
-        josesType.setChoiceAnswer(4);
+        josesType.setAnswer("4");
         josesType.setServiceQuestion(typeOfCleaning);
         josesType.setProvider(jose);
         List<ServiceAnswer> josesAnswers = new ArrayList<>();
@@ -186,7 +182,7 @@ public class ServiceSearchTest {
 
         ServiceAnswer jacksType = new ServiceAnswer();
         jacksType.setId(3);
-        jacksType.setChoiceAnswer(5);
+        jacksType.setAnswer("5");
         jacksType.setServiceQuestion(typeOfCleaning);
         jacksType.setProvider(jack);
         List<ServiceAnswer> jacksAnswers = new ArrayList<>();
@@ -204,7 +200,7 @@ public class ServiceSearchTest {
         predicate1.setQuestion(typeOfCleaning);
         ServiceAnswer predAnswer1 = new ServiceAnswer();
         predAnswer1.setServiceQuestion(typeOfCleaning);
-        predAnswer1.setChoiceAnswer(1);
+        predAnswer1.setAnswer("1");
         predicate1.setAnswer(predAnswer1);
 
         SearchCriteria criteria1 = new SearchCriteria();
@@ -225,7 +221,7 @@ public class ServiceSearchTest {
         predicate2.setQuestion(typeOfCleaning);
         ServiceAnswer predAnswer2 = new ServiceAnswer();
         predAnswer2.setServiceQuestion(typeOfCleaning);
-        predAnswer2.setChoiceAnswer(4);
+        predAnswer2.setAnswer("4");
         predicate2.setAnswer(predAnswer2);
 
         SearchCriteria criteria2 = new SearchCriteria();
@@ -245,7 +241,7 @@ public class ServiceSearchTest {
         predicate3.setQuestion(typeOfCleaning);
         ServiceAnswer predAnswer3 = new ServiceAnswer();
         predAnswer3.setServiceQuestion(typeOfCleaning);
-        predAnswer3.setChoiceAnswer(5);
+        predAnswer3.setAnswer("5");
         predicate3.setAnswer(predAnswer3);
 
         SearchCriteria criteria3 = new SearchCriteria();
@@ -267,14 +263,13 @@ public class ServiceSearchTest {
 
         ServiceAnswer samsRooms = new ServiceAnswer();
         samsRooms.setId(1);
-        samsRooms.setMinRangeAnswer(5);
-        samsRooms.setMaxRangeAnswer(6);
+        samsRooms.setAnswer("5,6");
         samsRooms.setProvider(sam);
         samsRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer samsPets = new ServiceAnswer();
         samsPets.setId(2);
-        samsPets.setTrueFalseAnswer(Boolean.TRUE);
+        samsPets.setAnswer("True");
         samsPets.setServiceQuestion(havePets);
         samsPets.setProvider(sam);
 
@@ -286,14 +281,13 @@ public class ServiceSearchTest {
 
         ServiceAnswer josesRooms = new ServiceAnswer();
         josesRooms.setId(3);
-        josesRooms.setMinRangeAnswer(3);
-        josesRooms.setMaxRangeAnswer(4);
+        josesRooms.setAnswer("3,4");
         josesRooms.setProvider(jose);
         josesRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer josesPets = new ServiceAnswer();
         josesPets.setId(4);
-        josesPets.setTrueFalseAnswer(Boolean.FALSE);
+        josesPets.setAnswer("False");
         josesPets.setServiceQuestion(havePets);
         josesPets.setProvider(jose);
 
@@ -306,14 +300,13 @@ public class ServiceSearchTest {
 
         ServiceAnswer jacksRooms = new ServiceAnswer();
         jacksRooms.setId(5);
-        jacksRooms.setMinRangeAnswer(1);
-        jacksRooms.setMaxRangeAnswer(2);
+        jacksRooms.setAnswer("1,2");
         jacksRooms.setProvider(jack);
         jacksRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer jacksPets = new ServiceAnswer();
         jacksPets.setId(6);
-        jacksPets.setTrueFalseAnswer(Boolean.FALSE);
+        jacksPets.setAnswer("False");
         jacksPets.setServiceQuestion(havePets);
         jacksPets.setProvider(jack);
 
@@ -333,15 +326,14 @@ public class ServiceSearchTest {
         roomPredicate.setQuestion(numberOfRooms);
         ServiceAnswer roomAnswer = new ServiceAnswer();
         roomAnswer.setServiceQuestion(numberOfRooms);
-        roomAnswer.setMinRangeAnswer(3);
-        roomAnswer.setMaxRangeAnswer(5);
+        roomAnswer.setAnswer("3,5");
         roomPredicate.setAnswer(roomAnswer);
 
         SearchPredicate petPredicate = new SearchPredicate();
         petPredicate.setQuestion(havePets);
         ServiceAnswer petAnswer = new ServiceAnswer();
         petAnswer.setServiceQuestion(havePets);
-        petAnswer.setTrueFalseAnswer(Boolean.TRUE);
+        petAnswer.setAnswer("True");
         petPredicate.setAnswer(petAnswer);
 
         SearchCriteria criteria = new SearchCriteria();
@@ -366,20 +358,19 @@ public class ServiceSearchTest {
 
         ServiceAnswer samsRooms = new ServiceAnswer();
         samsRooms.setId(1);
-        samsRooms.setMinRangeAnswer(5);
-        samsRooms.setMaxRangeAnswer(6);
+        samsRooms.setAnswer("5,6");
         samsRooms.setProvider(sam);
         samsRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer samsPets = new ServiceAnswer();
         samsPets.setId(2);
-        samsPets.setTrueFalseAnswer(Boolean.TRUE);
+        samsPets.setAnswer("True");
         samsPets.setServiceQuestion(havePets);
         samsPets.setProvider(sam);
 
         ServiceAnswer samsType = new ServiceAnswer();
         samsType.setId(1);
-        samsType.setChoiceAnswer(1);
+        samsType.setAnswer("1");
         samsType.setServiceQuestion(typeOfCleaning);
         samsType.setProvider(sam);
 
@@ -391,20 +382,19 @@ public class ServiceSearchTest {
 
         ServiceAnswer josesRooms = new ServiceAnswer();
         josesRooms.setId(3);
-        josesRooms.setMinRangeAnswer(3);
-        josesRooms.setMaxRangeAnswer(4);
+        josesRooms.setAnswer("3,4");
         josesRooms.setProvider(jose);
         josesRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer josesPets = new ServiceAnswer();
         josesPets.setId(4);
-        josesPets.setTrueFalseAnswer(Boolean.FALSE);
+        josesPets.setAnswer("False");
         josesPets.setServiceQuestion(havePets);
         josesPets.setProvider(jose);
 
         ServiceAnswer josesType = new ServiceAnswer();
         josesType.setId(2);
-        josesType.setChoiceAnswer(4);
+        josesType.setAnswer("4");
         josesType.setServiceQuestion(typeOfCleaning);
         josesType.setProvider(jose);
 
@@ -416,20 +406,19 @@ public class ServiceSearchTest {
 
         ServiceAnswer jacksRooms = new ServiceAnswer();
         jacksRooms.setId(5);
-        jacksRooms.setMinRangeAnswer(1);
-        jacksRooms.setMaxRangeAnswer(2);
+        jacksRooms.setAnswer("1,2");
         jacksRooms.setProvider(jack);
         jacksRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer jacksPets = new ServiceAnswer();
         jacksPets.setId(6);
-        jacksPets.setTrueFalseAnswer(Boolean.FALSE);
+        jacksPets.setAnswer("False");
         jacksPets.setServiceQuestion(havePets);
         jacksPets.setProvider(jack);
 
         ServiceAnswer jacksType = new ServiceAnswer();
         jacksType.setId(3);
-        jacksType.setChoiceAnswer(5);
+        jacksType.setAnswer("5");
         jacksType.setServiceQuestion(typeOfCleaning);
         jacksType.setProvider(jack);
 
@@ -449,22 +438,21 @@ public class ServiceSearchTest {
         roomPredicate.setQuestion(numberOfRooms);
         ServiceAnswer roomAnswer = new ServiceAnswer();
         roomAnswer.setServiceQuestion(numberOfRooms);
-        roomAnswer.setMinRangeAnswer(3);
-        roomAnswer.setMaxRangeAnswer(5);
+        roomAnswer.setAnswer("3,5");
         roomPredicate.setAnswer(roomAnswer);
 
         SearchPredicate petPredicate = new SearchPredicate();
         petPredicate.setQuestion(havePets);
         ServiceAnswer petAnswer = new ServiceAnswer();
         petAnswer.setServiceQuestion(havePets);
-        petAnswer.setTrueFalseAnswer(Boolean.TRUE);
+        petAnswer.setAnswer("True");
         petPredicate.setAnswer(petAnswer);
 
         SearchPredicate typePredicate1 = new SearchPredicate();
         typePredicate1.setQuestion(typeOfCleaning);
         ServiceAnswer typeAnswer1 = new ServiceAnswer();
         typeAnswer1.setServiceQuestion(typeOfCleaning);
-        typeAnswer1.setChoiceAnswer(1);
+        typeAnswer1.setAnswer("1");
         typePredicate1.setAnswer(typeAnswer1);
 
         SearchCriteria criteria = new SearchCriteria();
@@ -498,20 +486,19 @@ public class ServiceSearchTest {
     void testServiceSearchNoProviders() {
         ServiceAnswer samsRooms = new ServiceAnswer();
         samsRooms.setId(1);
-        samsRooms.setMinRangeAnswer(5);
-        samsRooms.setMaxRangeAnswer(6);
+        samsRooms.setAnswer("5,6");
         samsRooms.setProvider(sam);
         samsRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer samsPets = new ServiceAnswer();
         samsPets.setId(2);
-        samsPets.setTrueFalseAnswer(Boolean.TRUE);
+        samsPets.setAnswer("True");
         samsPets.setServiceQuestion(havePets);
         samsPets.setProvider(sam);
 
         ServiceAnswer samsType = new ServiceAnswer();
         samsType.setId(1);
-        samsType.setChoiceAnswer(1);
+        samsType.setAnswer("1");
         samsType.setServiceQuestion(typeOfCleaning);
         samsType.setProvider(sam);
 
@@ -523,20 +510,19 @@ public class ServiceSearchTest {
 
         ServiceAnswer josesRooms = new ServiceAnswer();
         josesRooms.setId(3);
-        josesRooms.setMinRangeAnswer(3);
-        josesRooms.setMaxRangeAnswer(4);
+        josesRooms.setAnswer("3,4");
         josesRooms.setProvider(jose);
         josesRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer josesPets = new ServiceAnswer();
         josesPets.setId(4);
-        josesPets.setTrueFalseAnswer(Boolean.FALSE);
+        josesPets.setAnswer("False");
         josesPets.setServiceQuestion(havePets);
         josesPets.setProvider(jose);
 
         ServiceAnswer josesType = new ServiceAnswer();
         josesType.setId(2);
-        josesType.setChoiceAnswer(4);
+        josesType.setAnswer("4");
         josesType.setServiceQuestion(typeOfCleaning);
         josesType.setProvider(jose);
 
@@ -548,20 +534,19 @@ public class ServiceSearchTest {
 
         ServiceAnswer jacksRooms = new ServiceAnswer();
         jacksRooms.setId(5);
-        jacksRooms.setMinRangeAnswer(1);
-        jacksRooms.setMaxRangeAnswer(2);
+        jacksRooms.setAnswer("1,2");
         jacksRooms.setProvider(jack);
         jacksRooms.setServiceQuestion(numberOfRooms);
 
         ServiceAnswer jacksPets = new ServiceAnswer();
         jacksPets.setId(6);
-        jacksPets.setTrueFalseAnswer(Boolean.FALSE);
+        jacksPets.setAnswer("False");
         jacksPets.setServiceQuestion(havePets);
         jacksPets.setProvider(jack);
 
         ServiceAnswer jacksType = new ServiceAnswer();
         jacksType.setId(3);
-        jacksType.setChoiceAnswer(5);
+        jacksType.setAnswer("5");
         jacksType.setServiceQuestion(typeOfCleaning);
         jacksType.setProvider(jack);
 
@@ -581,14 +566,14 @@ public class ServiceSearchTest {
         petPredicate.setQuestion(havePets);
         ServiceAnswer petAnswer = new ServiceAnswer();
         petAnswer.setServiceQuestion(havePets);
-        petAnswer.setTrueFalseAnswer(Boolean.TRUE);
+        petAnswer.setAnswer("True");
         petPredicate.setAnswer(petAnswer);
 
         SearchPredicate typePredicate2 = new SearchPredicate();
         typePredicate2.setQuestion(typeOfCleaning);
         ServiceAnswer typeAnswer2 = new ServiceAnswer();
         typeAnswer2.setServiceQuestion(typeOfCleaning);
-        typeAnswer2.setChoiceAnswer(2);
+        typeAnswer2.setAnswer("2");
         typePredicate2.setAnswer(typeAnswer2);
 
         SearchCriteria criteria = new SearchCriteria();
