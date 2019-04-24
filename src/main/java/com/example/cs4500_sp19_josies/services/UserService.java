@@ -80,4 +80,26 @@ public class UserService {
 		return user;
 	}
 
+    @PostMapping("/api/login")
+    public User login(@RequestBody User credentials,
+                      HttpSession session) {
+        List<User> users = userRepository.findAllUsers();
+        for (User user : users) {
+            if (user.getEmail() != null &&
+                    user.getEmail().equals(credentials.getEmail()) &&
+                    user.getPassword().equals(credentials.getPassword())) {
+                session.setAttribute("currentUser", Integer.toString(user.getId()));
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @PostMapping("/api/logout")
+    public void logout
+            (HttpSession session) {
+        session.invalidate();
+    }
+
+
 }
