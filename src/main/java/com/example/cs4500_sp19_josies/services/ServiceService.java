@@ -1,5 +1,6 @@
 package com.example.cs4500_sp19_josies.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.cs4500_sp19_josies.models.Service;
@@ -44,6 +45,12 @@ public class ServiceService {
             @RequestBody Service serviceUpdates) {
         Service service = serviceRepository.findServiceById(id);
         service.setTitle(serviceUpdates.getTitle());
+        ArrayList<User> providers = new ArrayList<User>();
+        for (User u : serviceUpdates.getProviders()) {
+        	User uu = userRepository.findUserById(u.getId());
+        	providers.add(uu);
+        }
+        service.setProviders(providers);
         return serviceRepository.save(service);
     }
     @DeleteMapping("/api/services/{serviceId}")
