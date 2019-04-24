@@ -3,6 +3,7 @@ package com.example.cs4500_sp19_josies.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 import java.util.List;
 
 import javax.persistence.Entity;
